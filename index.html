@@ -536,8 +536,8 @@ const CMDS = {
   education(){
     blank();
     tl('  ── education ───────────────────────────','hd'); blank();
-    tl('  Bachelor of Engineering, Computer Science','ac');
-    tl('  IETE, New Delhi  ·  2012','sub');
+    tl('  Computer Science & Engineering','ac');
+    tl('  The Institution of Electronics and Telecommunication Engineers, New Delhi  ·  2012','sub');
     blank();
   },
   contact(){
@@ -577,27 +577,37 @@ function typeName(){
 }
 // export to pdf
   function exportToPDF() {
-    const element = document.getElementById('resume-template');
+    const template = document.getElementById('pdf-template');
     
-    // Sync data from your existing UI to the PDF template
-    document.getElementById('pdf-experience').innerHTML = document.querySelector('#sec-experience .p-sec-body').innerHTML;
-    document.getElementById('pdf-education').innerHTML = document.querySelector('#sec-education .p-sec-body').innerHTML;
-    document.getElementById('pdf-skills').innerHTML = document.querySelector('#sec-skills .p-sec-body').innerHTML;
+    // Scrape data from your existing profile-pane sections
+    const getBody = (id) => document.querySelector(`#${id} .p-sec-body`).innerHTML;
     
-    // Show template temporarily for capture
-    element.style.display = 'block';
+    document.getElementById('pdf-skills-content').innerHTML = getBody('sec-skills');
+    document.getElementById('pdf-domains-content').innerHTML = getBody('sec-domains');
+    document.getElementById('pdf-certs-content').innerHTML = getBody('sec-certs');
+    document.getElementById('pdf-exp-content').innerHTML = getBody('sec-experience');
+    document.getElementById('pdf-edu-content').innerHTML = getBody('sec-education');
+
+    // Show template
+    template.style.display = 'block';
 
     const opt = {
-        margin:       0.5,
-        filename:     'Darshan_Gandhi_Resume.pdf',
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2, useCORS: true },
-        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+        margin: [0.2, 0.2],
+        filename: 'Darshan_Gandhi_Architect.pdf',
+        image: { type: 'jpeg', quality: 1 },
+        html2canvas: { 
+            scale: 2, 
+            useCORS: true, 
+            backgroundColor: '#0f0b08' 
+        },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
     };
 
-    html2pdf().set(opt).from(element).save().then(() => {
-        element.style.display = 'none'; // Hide it again
+    // Run Export
+    html2pdf().set(opt).from(template).save().then(() => {
+        template.style.display = 'none';
     });
+  }
 // scroll-to section with expand + flash
 function goSection(id){
   const sec = document.getElementById(id);
@@ -640,30 +650,50 @@ setTimeout(()=>inp.focus(),950);
   
 }
 </script>
-  <div id="resume-template" style="display: none; width: 800px; padding: 40px; background: #fff; color: #000; font-family: sans-serif;">
-    <div style="display: flex; gap: 40px;">
-        <div style="flex: 1; border-right: 1px solid #eee; padding-right: 20px;">
-            <h3 style="border-bottom: 2px solid #333;">SKILLS</h3>
-            <div id="pdf-skills"></div>
-            
-            <h3 style="border-bottom: 2px solid #333; margin-top: 20px;">DOMAINS</h3>
-            <div id="pdf-domains"></div>
-            
-            <h3 style="border-bottom: 2px solid #333; margin-top: 20px;">CERTIFICATIONS</h3>
-            <div id="pdf-certs"></div>
+  <div id="pdf-template" style="display: none; width: 800px; background: #0f0b08; color: #e2cfa0; font-family: 'JetBrains Mono', monospace; padding: 30px; font-size: 11px;">
+    <div style="display: flex; border-bottom: 1px solid #3d2e18; padding-bottom: 20px; margin-bottom: 20px;">
+        <div style="flex: 1;">
+            <h1 style="color: #d4863a; font-size: 24px; margin: 0;">DARSHAN GANDHI</h1>
+            <p style="color: #e8a84e; font-size: 12px; margin-bottom: 10px;">Technical Architect</p>
+            <div style="color: #9a8060; font-size: 10px; line-height: 1.4;">
+                <div>📧 email@example.com</div> <div>📱 +91 00000 00000</div>   <div>📍 Bangalore, India</div>
+            </div>
+        </div>
+        <div style="flex: 1.5; padding-left: 20px; border-left: 1px solid #3d2e18;">
+            <h3 style="color: #d4863a; font-size: 10px; margin-bottom: 5px;">// SUMMARY</h3>
+            <p style="color: #e2cfa0; line-height: 1.5;">
+                Technical Architect with 14+ years of experience in high-performance mobile and backend systems. 
+                Expertise in .NET, Rust, and AI/ML orchestration. Currently building Project Sentinel and 
+                fine-tuning LLMs for specialized RAG pipelines.
+            </p>
+        </div>
+    </div>
+
+    <div style="display: flex; gap: 30px;">
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+            <div>
+                <h3 style="color: #d4863a; border-bottom: 1px solid #3d2e18; margin-bottom: 8px;">TECHNICAL STACK</h3>
+                <div id="pdf-skills-content"></div>
+            </div>
+            <div>
+                <h3 style="color: #d4863a; border-bottom: 1px solid #3d2e18; margin-bottom: 8px;">DOMAINS</h3>
+                <div id="pdf-domains-content"></div>
+            </div>
+            <div>
+                <h3 style="color: #d4863a; border-bottom: 1px solid #3d2e18; margin-bottom: 8px;">CERTIFICATIONS</h3>
+                <div id="pdf-certs-content"></div>
+            </div>
         </div>
 
-        <div style="flex: 2;">
-            <div id="pdf-header" style="margin-bottom: 30px;">
-                <h1 style="margin: 0;">DARSHAN GANDHI</h1>
-                <p style="color: #666;">Technical Architect</p>
+        <div style="flex: 2; display: flex; flex-direction: column; gap: 20px;">
+            <div>
+                <h3 style="color: #d4863a; border-bottom: 1px solid #3d2e18; margin-bottom: 8px;">PROFESSIONAL EXPERIENCE</h3>
+                <div id="pdf-exp-content"></div>
             </div>
-
-            <h3 style="border-bottom: 2px solid #333;">PROJECTS & EXPERIENCE</h3>
-            <div id="pdf-experience"></div>
-
-            <h3 style="border-bottom: 2px solid #333; margin-top: 20px;">EDUCATION</h3>
-            <div id="pdf-education"></div>
+            <div>
+                <h3 style="color: #d4863a; border-bottom: 1px solid #3d2e18; margin-bottom: 8px;">EDUCATION</h3>
+                <div id="pdf-edu-content"></div>
+            </div>
         </div>
     </div>
 </div>
