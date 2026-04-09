@@ -143,7 +143,7 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
 .term-output::-webkit-scrollbar-track{background:var(--bg);}
 .term-output::-webkit-scrollbar-thumb{background:var(--dimmer);}
 .input-row{display:flex;align-items:center;gap:6px;padding:7px 14px 10px;border-top:1px solid var(--dimmer);background:var(--bg2);flex-shrink:0;}
-#cmd-input{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:var(--mono);font-size:13px;caret-color:var(--amber2);}
+#cmd-input{width:100%;background:transparent;border:none;outline:none;color:var(--text);font-family:var(--mono);font-size:13px;caret-color:var(--amber2);position:relative;z-index:1;}
 
 /* ── RIGHT PROFILE ── */
 .profile-pane{flex:1;overflow-y:auto;background:var(--panel);display:flex;flex-direction:column;}
@@ -162,7 +162,8 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
 .ci{font-size:10px;color:var(--textsub);}
 .ci a{color:var(--cyan);text-decoration:none;}
 .ci a:hover{text-decoration:underline;}
-.ci span{color:var(--dim);margin-right:4px;}
+.ci span{color:var(--dim);margin-right:2px;}
+.ci span::after{content:':';}
 
 .p-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:1px solid var(--dimmer);}
 .p-stat{padding:9px 6px;text-align:center;background:var(--dimmost);border-right:1px solid var(--dimmer);}
@@ -215,7 +216,7 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
 .cert-yr{font-size:10px;color:var(--amber);flex-shrink:0;margin-left:12px;padding-top:1px;}
 
 /* experience */
-.job{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--dimmost);}
+.job{margin-bottom:16px;padding-bottom:16px;border-bottom:1px dashed var(--dimmer);}
 .job:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
 .job-title{font-size:12px;font-weight:700;color:var(--amber3);}
 .job-meta{font-size:10px;color:var(--cyan);margin:2px 0 1px;}
@@ -276,7 +277,6 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
   <span class="t-title">darshan@portfolio</span>
 
   <div class="t-right-group">
-    <span class="t-right">Bangalore, India</span>
     <button id="theme-toggle" onclick="toggleTheme()" style="background:none; border:none; cursor:pointer; color:var(--dim); display:flex; align-items:center;">
       <svg id="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
     </button>
@@ -295,9 +295,12 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
         <div class="term-tab" style="color:var(--dimmer)">+</div>
       </div>
       <div class="term-output" id="output"></div>
-      <div class="input-row">
+      <div class="input-row" style="position:relative;">
         <span style="color:var(--amber);font-weight:500">darshan</span><span style="color:var(--dimmer)">@</span><span style="color:var(--dim)">portfolio</span><span style="color:var(--amber)"> $</span>
-        <input type="text" id="cmd-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="type a command..."/>
+        <div style="position:relative;flex:1;">
+          <input type="text" id="cmd-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="type a command..."/>
+          <span id="ghost-text" style="position:absolute;left:0;top:0;pointer-events:none;color:var(--dimmer);font-family:var(--mono);font-size:13px;line-height:inherit;white-space:pre;padding:0;"></span>
+        </div>
       </div>
     </div>
 
@@ -312,10 +315,10 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
           <span class="ci"><span>loc</span>Bangalore, India</span>
           <span class="ci"><span>email</span><a href="mailto:dgandhi17@gmail.com">dgandhi17@gmail.com</a></span>
           <span class="ci"><span>tel</span><a href="tel:+918530046047">+91-8530046047</a></span>
-          <span class="ci"><span>li</span><a href="https://linkedin.com/in/your-profile" target="_blank">linkedin.com/in/your-profile</a></span>
+          <span class="ci"><span>li</span><a href="https://linkedin.com/in/i-darshan" target="_blank">linkedin.com/in/i-darshan</a></span>
         </div>
         <div class="p-stats">
-          <div class="p-stat" style="cursor:default"><div class="p-stat-n">14+</div><div class="p-stat-l">years</div></div>
+          <div class="p-stat" style="cursor:default"><div class="p-stat-n" id="stat-years">14+</div><div class="p-stat-l">years</div></div>
           <div class="p-stat p-stat-link" onclick="goSection('sec-domains')" title="View Domains"><div class="p-stat-n">4</div><div class="p-stat-l">domains ↗</div></div>
           <div class="p-stat p-stat-link" onclick="goSection('sec-experience')" title="View Experience"><div class="p-stat-n">4</div><div class="p-stat-l">companies ↗</div></div>
           <div class="p-stat p-stat-link" onclick="goSection('sec-projects')" title="View AI Project"><div class="p-stat-n">1</div><div class="p-stat-l">ai project ↗</div></div>
@@ -326,10 +329,10 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
       <div class="p-section" id="sec-summary">
         <div class="p-sec-head" onclick="ptoggle(this)">
           <div style="display:flex;align-items:center;"><svg class="p-sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg><span class="p-sec-title">Summary</span></div>
-          <span class="p-sec-toggle">▾</span>
+          <span class="p-sec-toggle">[-]</span>
         </div>
         <div class="p-sec-body">
-          <p class="summary-text">Technical Architect with 14 years of experience designing and delivering mobile, backend, and telecom systems at scale. Specialized in cross-platform mobile development (Android, Xamarin, .NET MAUI), .NET backend services, and telecom platform engineering. Domain expertise spanning healthcare IoT (BLE medical devices), VoIP/telephony, field sales SaaS, and transportation.</p>
+          <p class="summary-text">Technical Architect with <span id="summary-years">14</span> years of experience designing and delivering mobile, backend, and telecom systems at scale. Specialized in cross-platform mobile development (Android, Xamarin, .NET MAUI), .NET backend services, and telecom platform engineering. Domain expertise spanning healthcare IoT (BLE medical devices), VoIP/telephony, field sales SaaS, and transportation.</p>
         </div>
       </div>
 
@@ -337,9 +340,9 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
       <div class="p-section" id="sec-domains">
         <div class="p-sec-head" onclick="ptoggle(this)">
           <div style="display:flex;align-items:center;"><svg class="p-sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span class="p-sec-title">Domains</span></div>
-          <span class="p-sec-toggle">▾</span>
+          <span class="p-sec-toggle">[+]</span>
         </div>
-        <div class="p-sec-body">
+        <div class="p-sec-body hidden">
           <div class="domain-tags">
             <span class="domain-tag domain-link" onclick="goSection('sec-experience')">Telecom / VoIP</span>
             <span class="domain-tag domain-link" onclick="goSection('sec-experience')">Healthcare / Medical Devices</span>
@@ -353,9 +356,9 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
       <div class="p-section" id="sec-skills">
         <div class="p-sec-head" onclick="ptoggle(this)">
           <div style="display:flex;align-items:center;"><svg class="p-sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><span class="p-sec-title">Technical Skills</span></div>
-          <span class="p-sec-toggle">▾</span>
+          <span class="p-sec-toggle">[+]</span>
         </div>
-        <div class="p-sec-body" id="p-skills">
+        <div class="p-sec-body hidden" id="p-skills">
           <div class="sk-group-label">Mobile</div>
           <div class="sk-row"><span class="sk-name">Android (Java/Kotlin)</span><div class="sk-track"><div class="sk-fill" style="width:0" data-w="95%"></div></div><span class="sk-pct">95%</span></div>
           <div class="sk-row"><span class="sk-name">Xamarin / .NET MAUI</span><div class="sk-track"><div class="sk-fill" style="width:0" data-w="92%"></div></div><span class="sk-pct">92%</span></div>
@@ -388,12 +391,12 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
       <div class="p-section" id="sec-certs">
         <div class="p-sec-head" onclick="ptoggle(this)">
           <div style="display:flex;align-items:center;"><svg class="p-sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg><span class="p-sec-title">Certifications</span></div>
-          <span class="p-sec-toggle">▾</span>
+          <span class="p-sec-toggle">[+]</span>
         </div>
-        <div class="p-sec-body">
+        <div class="p-sec-body hidden">
           <div class="cert-row">
             <div>
-              <div class="cert-name">Building AI &amp; Machine Learning Systems</div>
+              <div class="cert-name"><a href="https://www.ml.school/certificate?id=qovqbhrl8w" target="_blank" style="color:inherit;text-decoration:none;" onmouseover="this.style.color='var(--amber)';this.style.textDecoration='underline'" onmouseout="this.style.color='inherit';this.style.textDecoration='none'">Building AI &amp; Machine Learning Systems</a></div>
               <div class="cert-prov">Machine Learning School</div>
             </div>
             <span class="cert-yr">Oct 2025</span>
@@ -405,7 +408,7 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
       <div class="p-section" id="sec-experience">
         <div class="p-sec-head" onclick="ptoggle(this)">
           <div style="display:flex;align-items:center;"><svg class="p-sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg><span class="p-sec-title">Professional Experience</span></div>
-          <span class="p-sec-toggle">▾</span>
+          <span class="p-sec-toggle">[-]</span>
         </div>
         <div class="p-sec-body">
 
@@ -449,8 +452,8 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
 
           <div class="job">
             <div class="job-title">Android Intern → Developer</div>
-            <div class="job-meta">Rishabh Software Pvt. Ltd. · Vadodara</div>
-            <div class="job-period">Jun 2012 – Jun 2013</div>
+            <div class="job-meta">Yudiz Solution Pvt. Ltd. · Ahmedabad</div>
+            <div class="job-period">Jan 2012 – Jun 2013</div>
             <ul class="job-bullets">
               <li>Developed Android applications including an IPL cricket widget that ranked in top apps on Google Play Store</li>
             </ul>
@@ -464,7 +467,7 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
       <div class="p-section" id="sec-projects">
         <div class="p-sec-head" onclick="ptoggle(this)">
           <div style="display:flex;align-items:center;"><svg class="p-sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg><span class="p-sec-title">Projects</span></div>
-          <span class="p-sec-toggle">▾</span>
+          <span class="p-sec-toggle">[-]</span>
         </div>
         <div class="p-sec-body">
           <div class="proj-name">Gita Wisdom — Vasudeva</div>
@@ -487,9 +490,9 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
       <div class="p-section" id="sec-education">
         <div class="p-sec-head" onclick="ptoggle(this)">
           <div style="display:flex;align-items:center;"><svg class="p-sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg><span class="p-sec-title">Education</span></div>
-          <span class="p-sec-toggle">▾</span>
+          <span class="p-sec-toggle">[+]</span>
         </div>
-        <div class="p-sec-body">
+        <div class="p-sec-body hidden">
           <div class="edu-item">
             <div class="edu-bar"></div>
             <div>
@@ -519,10 +522,26 @@ function ptoggle(head){
   const body=head.nextElementSibling;
   const tog=head.querySelector('.p-sec-toggle');
   const hidden=body.classList.toggle('hidden');
-  tog.textContent=hidden?'▸':'▾';
+  tog.textContent=hidden?'[+]':'[-]';
   if(!hidden) setTimeout(()=>{ body.querySelectorAll('.sk-fill[data-w]').forEach(f=>{f.style.width=f.getAttribute('data-w');}); },60);
 }
-setTimeout(()=>{ document.querySelectorAll('.sk-fill[data-w]').forEach(f=>{f.style.width=f.getAttribute('data-w');}); },500);
+setTimeout(()=>{ document.querySelectorAll('.p-sec-body:not(.hidden) .sk-fill[data-w]').forEach(f=>{f.style.width=f.getAttribute('data-w');}); },500);
+
+// Auto-calculated career version (career start: Jan 2012)
+const CAREER_START = new Date(2012, 0);
+const now = new Date();
+const careerYears = now.getFullYear() - CAREER_START.getFullYear();
+const careerMonths = now.getMonth() - CAREER_START.getMonth();
+const totalMonths = careerYears * 12 + careerMonths;
+const VER = `v${Math.floor(totalMonths/12)}.${totalMonths%12}`;
+const YRS = `${Math.floor(totalMonths/12)}+`;
+const YRS_NUM = `${Math.floor(totalMonths/12)}`;
+document.getElementById('stat-years').textContent = YRS;
+document.getElementById('summary-years').textContent = YRS_NUM;
+document.addEventListener('DOMContentLoaded', ()=>{
+  const pdfYrs = document.getElementById('pdf-summary-years');
+  if(pdfYrs) pdfYrs.textContent = YRS_NUM;
+});
 
 function tl(text='',cls='info'){ const p=document.createElement('p'); p.className='tl '+cls; p.innerHTML=text; output.appendChild(p); }
 function blank(){ tl('','blank'); }
@@ -541,7 +560,7 @@ const CMDS = {
     blank();
     tl('  ┌── commands ──────────────────────────────┐','dv');
     tl('  │','dv');
-    [['whoami','identity & summary'],['skills','full tech stack'],['experience','14 years of work'],['domains','industry focus areas'],['ai','Vasudeva AI project'],['certs','certifications'],['education','degree'],['contact','get in touch'],['clear','clear screen']].forEach(([c,d])=>{
+    [['whoami','identity & summary'],['skills','full tech stack'],['experience',YRS+' years of work'],['domains','industry focus areas'],['ai','Vasudeva AI project'],['certs','certifications'],['education','degree'],['contact','get in touch'],['hire','why hire darshan?'],['download','export resume as PDF'],['theme','toggle dark / light'],['neofetch','system info card'],['clear','clear screen']].forEach(([c,d])=>{
       const r=document.createElement('p'); r.className='tl';
       r.innerHTML=`  │  <span style="color:var(--amber2);display:inline-block;min-width:110px">${c}</span><span style="color:var(--textsub);">${d}</span>`; output.appendChild(r);
     });
@@ -554,7 +573,7 @@ const CMDS = {
     trow('  name','Darshan Gandhi');
     trow('  role','Technical Architect – Product Development');
     trow('  base','Bangalore, India');
-    trow('  exp','14+ years');
+    trow('  exp',YRS+' years');
     trow('  focus','Mobile · .NET Backend · Telecom · AI/ML');
     blank();
     tl('  Cross-platform mobile architect (Android, Xamarin, .NET MAUI).','sub');
@@ -593,7 +612,7 @@ const CMDS = {
       {t:'Technical Architect',p:'Jun 2022–Present',c:'Harman (GoDaddy–FreedomVoice)',d:'SOMOS DNO telecom compliance. iOS/Android app ownership. Salesforce, WorldPay, E911. Removed 21K+ lines of debt.'},
       {t:'Sr. Mobile Architect / TL',p:'Mar 2019–Jun 2022',c:'Wipro (Medtronic)',d:'BLE cardiac pacemaker app. Device-specific launch strategy. Led 8–10 devs. -80% app bundle size.'},
       {t:'Sr. Engineer → Mobile TL',p:'Jun 2013–Feb 2019',c:'Rishabh Software',d:'MapView Route Planner. +40% geocoding accuracy. Real-time cab dispatch with live GPS.'},
-      {t:'Android Intern → Developer',p:'Jun 2012–Jun 2013',c:'Rishabh Software',d:'IPL cricket widget — top-ranked on Google Play Store.'},
+      {t:'Android Intern → Developer',p:'Jan 2012–Jun 2013',c:'Yudiz Solution',d:'IPL cricket widget — top-ranked on Google Play Store.'},
     ].forEach((j,i,a)=>{
       tl(`  <span style="color:var(--amber3);font-weight:700">${j.t}</span>`);
       tl(`  <span style="color:var(--cyan)">${j.c}</span>  <span style="color:var(--dim)">${j.p}</span>`);
@@ -628,7 +647,7 @@ const CMDS = {
   certs(){
     blank();
     tl('  ── certifications ──────────────────────','hd'); blank();
-    tl('  <span style="color:var(--amber3)">✦</span>  Building AI & Machine Learning Systems','info');
+    tl('  <span style="color:var(--amber3)">✦</span>  <a href="https://www.ml.school/certificate?id=qovqbhrl8w" target="_blank" style="color:var(--text);text-decoration:none;">Building AI & Machine Learning Systems</a>','info');
     tl('     Machine Learning School  <span style="color:var(--amber)">·  Oct 2025</span>','sub');
     blank();
   },
@@ -644,27 +663,131 @@ const CMDS = {
     tl('  ── contact ─────────────────────────────','hd'); blank();
     trow('  email   ','<a href="mailto:dgandhi17@gmail.com" style="color:var(--amber2);text-decoration:none">dgandhi17@gmail.com</a>');
     trow('  phone   ','<a href="tel:+918530046047" style="color:var(--amber2);text-decoration:none">+91-8530046047</a>');
-    trow('  linkedin','<a href="https://linkedin.com/in/your-profile" target="_blank" style="color:var(--cyan);text-decoration:none">linkedin.com/in/your-profile</a>');
+    trow('  linkedin','<a href="https://linkedin.com/in/i-darshan" target="_blank" style="color:var(--cyan);text-decoration:none">linkedin.com/in/i-darshan</a>');
     trow('  location','Bangalore, India');
     blank();
   },
   clear(){ output.innerHTML=''; return true; },
+  download(){
+    blank();
+    tl('  Generating PDF...','sub');
+    setTimeout(()=>{ exportToPDF(); tl('  <span style="color:var(--green)">✓</span>  PDF saved as Darshan_Gandhi_Resume.pdf','ok'); scroll(); },300);
+    blank();
+  },
+  theme(){
+    toggleTheme();
+    blank();
+    const mode = document.body.classList.contains('light-mode') ? 'light' : 'dark';
+    tl(`  <span style="color:var(--green)">✓</span>  Switched to ${mode} mode`,'ok');
+    blank();
+  },
+  neofetch(){
+    blank();
+    tl('  <span style="color:var(--amber)">      ╭───────────╮</span>');
+    tl('  <span style="color:var(--amber)">      │  <span style="color:var(--amber3)">D G</span>     │</span>');
+    tl('  <span style="color:var(--amber)">      │           │</span>');
+    tl('  <span style="color:var(--amber)">      ╰───────────╯</span>');
+    blank();
+    trow('  <span style="color:var(--amber2)">os</span>       ','Portfolio '+VER);
+    trow('  <span style="color:var(--amber2)">host</span>     ','Bangalore, India');
+    trow('  <span style="color:var(--amber2)">uptime</span>   ',YRS+' years');
+    trow('  <span style="color:var(--amber2)">shell</span>    ','darshan@portfolio');
+    trow('  <span style="color:var(--amber2)">lang</span>     ','C# · Java · Kotlin · Python');
+    trow('  <span style="color:var(--amber2)">stack</span>    ','.NET · Xamarin · MAUI · Android');
+    trow('  <span style="color:var(--amber2)">ai</span>       ','LoRA · RAG · Ollama · GGUF');
+    trow('  <span style="color:var(--amber2)">domains</span>  ','Telecom · Healthcare · SaaS');
+    blank();
+    tl('  <span style="color:var(--amber)">██</span><span style="color:var(--amber2)">██</span><span style="color:var(--amber3)">██</span><span style="color:var(--cyan)">██</span><span style="color:var(--green)">██</span><span style="color:var(--red)">██</span><span style="color:var(--dim)">██</span><span style="color:var(--text)">██</span>');
+    blank();
+  },
+  hire(){
+    blank();
+    tl('  ── why hire darshan? ───────────────────','hd'); blank();
+    tl('  <span style="color:var(--amber2)">01.</span>  <span style="color:var(--amber3)">Avg 5+ years per company</span> — invests in teams and products, not just paychecks','sub');
+    blank();
+    tl('  <span style="color:var(--amber2)">02.</span>  <span style="color:var(--amber3)">Shipped BLE medical devices at Medtronic</span> — literally helped keep hearts beating','sub');
+    blank();
+    tl('  <span style="color:var(--amber2)">03.</span>  <span style="color:var(--amber3)">Led 8–10 devs end-to-end</span> — code reviews, mentoring, stakeholder collaboration','sub');
+    blank();
+    tl('  <span style="color:var(--amber2)">04.</span>  <span style="color:var(--amber3)">Eliminated 21K+ lines of tech debt</span> — proactively cleans up, not just builds','sub');
+    blank();
+    tl('  <span style="color:var(--amber2)">05.</span>  <span style="color:var(--amber3)">Grew from intern to architect</span> — proven trajectory within same org','sub');
+    blank();
+    tl('  <span style="color:var(--amber2)">06.</span>  <span style="color:var(--amber3)">Fine-tuned a 9B parameter LLM</span> — learns new domains on own time','sub');
+    blank();
+    tl('  <span style="color:var(--amber2)">07.</span>  <span style="color:var(--amber3)">4 domains in '+YRS_NUM+' years</span> — telecom, healthcare, SaaS, transport','sub');
+    blank();
+    tl('  <span style="color:var(--amber2)">08.</span>  <span style="color:var(--amber3)">Security-first mindset</span> — OWASP, secret scanning, TLS across 10+ repos','sub');
+    blank();
+    tl('  <span style="color:var(--dim)">────────────────────────────────────────────</span>','dv');
+    tl('  <span style="color:var(--cyan)">→</span>  Ready? Type <span style="color:var(--amber)">sudo hire me</span> or <span style="color:var(--amber)">contact</span>','cy');
+    blank();
+  },
 };
+
+// Easter egg commands (hidden from help)
+CMDS['sudo hire me'] = function(){
+  blank();
+  tl('  <span style="color:var(--green)">[sudo]</span> password for recruiter: <span style="color:var(--dimmer)">********</span>');
+  tl('  <span style="color:var(--green)">✓</span>  Access granted.','ok');
+  blank();
+  tl('  Sending offer letter<span class="dot-anim">...</span>','sub');
+  setTimeout(()=>{
+    tl('  <span style="color:var(--green)">✓</span>  Offer letter sent to dgandhi17@gmail.com','ok');
+    tl('  <span style="color:var(--amber2)">→</span>  In the meantime, check out <span style="color:var(--amber)">experience</span> and <span style="color:var(--amber)">skills</span>','cy');
+    blank(); scroll();
+  },1200);
+  blank();
+};
+CMDS['rm -rf /'] = function(){
+  blank();
+  tl('  <span style="color:var(--red)">rm: permission denied</span>','err');
+  tl(`  Nice try. System protected by ${YRS} years of experience.`,'sub');
+  tl('  <span style="color:var(--dim)">Tip: try <span style="color:var(--amber2)">sudo hire me</span> instead.</span>');
+  blank();
+};
+CMDS['open linkedin'] = function(){
+  blank();
+  tl('  <span style="color:var(--green)">✓</span>  Opening linkedin.com/in/i-darshan...','ok');
+  blank();
+  window.open('https://linkedin.com/in/i-darshan','_blank');
+};
+CMDS['open email'] = function(){
+  blank();
+  tl('  <span style="color:var(--green)">✓</span>  Opening mail client for dgandhi17@gmail.com...','ok');
+  blank();
+  window.open('mailto:dgandhi17@gmail.com');
+};
+
+const allCmdKeys = Object.keys(CMDS);
+function ghostMatch(val){
+  if(!val) return '';
+  const v = val.toLowerCase();
+  const m = allCmdKeys.find(k=>k.startsWith(v) && k!==v);
+  return m ? m.slice(val.length) : '';
+}
+const ghost = document.getElementById('ghost-text');
+function updateGhost(){
+  const v = inp.value;
+  const suffix = ghostMatch(v);
+  ghost.textContent = suffix ? v + suffix : '';
+}
 
 let hist=[],hidx=-1;
 inp.addEventListener('keydown',e=>{
   if(e.key==='Enter'){
-    const v=inp.value.trim(); inp.value='';
+    const v=inp.value.trim(); inp.value=''; ghost.textContent='';
     if(!v)return;
     hist.unshift(v); hidx=-1; sbCmd.textContent=v;
     echoCmd(v);
     const fn=CMDS[v.toLowerCase()];
     if(fn){ fn(); } else { blank(); tl(`  not found: <span style="color:var(--red)">${v}</span>  — type <span style="color:var(--amber2)">help</span>`,'err'); blank(); }
     scroll();
-  } else if(e.key==='ArrowUp'){ e.preventDefault(); if(hidx<hist.length-1){hidx++;inp.value=hist[hidx];} }
-    else if(e.key==='ArrowDown'){ e.preventDefault(); if(hidx>0){hidx--;inp.value=hist[hidx];}else{hidx=-1;inp.value='';} }
-    else if(e.key==='Tab'){ e.preventDefault(); const p=inp.value.toLowerCase(); const m=Object.keys(CMDS).find(k=>k.startsWith(p)); if(m)inp.value=m; }
+  } else if(e.key==='ArrowUp'){ e.preventDefault(); if(hidx<hist.length-1){hidx++;inp.value=hist[hidx];} updateGhost(); }
+    else if(e.key==='ArrowDown'){ e.preventDefault(); if(hidx>0){hidx--;inp.value=hist[hidx];}else{hidx=-1;inp.value='';} updateGhost(); }
+    else if(e.key==='Tab'){ e.preventDefault(); const p=inp.value.toLowerCase(); const m=allCmdKeys.find(k=>k.startsWith(p)&&k!==p); if(m){inp.value=m;} updateGhost(); }
 });
+inp.addEventListener('input', updateGhost);
 document.querySelector('.term-pane').addEventListener('click',()=>inp.focus());
 
 // typewriter name
@@ -697,14 +820,120 @@ function typeName(){
         const el = document.querySelector(`#${id} .p-sec-body`);
         if (!el) return '';
         const clone = el.cloneNode(true);
-        // Force width on skill bars since they use transitions/data-w
-        clone.querySelectorAll('.sk-fill').forEach(f => {
-            f.style.width = f.getAttribute('data-w') + '%';
-        });
-        const allElements = clone.querySelectorAll('.job');
-        allElements.forEach(job => {
-            job.style.paddingLeft = '5px'; // Small breath away from the vertical line
-        });
+        
+        if (id === 'sec-experience') {
+            const jobs = clone.querySelectorAll('.job');
+            jobs.forEach((j, index) => {
+                // Fix Bullet Points
+                const bullets = j.querySelectorAll('.job-bullets li');
+                bullets.forEach(li => {
+                    li.style.position = 'relative';
+                    li.style.paddingLeft = '14px';
+                    li.style.marginBottom = '2px';
+                    li.innerHTML = `<span style="position:absolute; left:0; color:var(--dim);">→</span>` + li.innerHTML;
+                });
+
+                // Single dashed divider between companies
+                if (index < jobs.length - 1) {
+                    j.style.borderBottom = '1px dashed var(--dim)';
+                    j.style.paddingBottom = '12px';
+                    j.style.marginBottom = '12px';
+                } else {
+                    j.style.borderBottom = 'none';
+                    j.style.paddingBottom = '0';
+                    j.style.marginBottom = '0';
+                }
+            });
+        }
+
+        // Skills section: bold headers, smaller/lighter skill rows, dotted dividers
+        if (id === 'sec-skills') {
+            clone.querySelectorAll('.sk-group-label').forEach((label, i, all) => {
+                label.style.fontWeight = '700';
+                label.style.fontSize = '8.5px';
+                label.style.color = 'var(--amber2)';
+                label.style.textTransform = 'uppercase';
+                label.style.letterSpacing = '0.06em';
+                label.style.marginTop = i === 0 ? '0' : '8px';
+                label.style.marginBottom = '5px';
+                label.style.paddingTop = i === 0 ? '0' : '8px';
+                if (i > 0) label.style.borderTop = '1px dashed var(--dimmer)';
+            });
+            clone.querySelectorAll('.sk-name').forEach(n => {
+                n.style.fontSize = '7px';
+                n.style.color = 'var(--textsub)';
+            });
+            clone.querySelectorAll('.sk-pct').forEach(n => {
+                n.style.fontSize = '6.5px';
+                n.style.color = 'var(--dim)';
+            });
+            clone.querySelectorAll('.sk-track').forEach(t => {
+                t.style.height = '3px';
+            });
+            clone.querySelectorAll('.sk-fill').forEach(f => {
+                f.style.width = f.getAttribute('data-w');
+                f.style.height = '100%';
+                f.style.opacity = '0.7';
+            });
+        } else {
+            // Other sections: animate skill bars if any
+            clone.querySelectorAll('.sk-fill').forEach(f => {
+                f.style.width = f.getAttribute('data-w') + '%';
+                f.style.backgroundColor = 'var(--amber)';
+            });
+        }
+
+        // Certs/Education/Domains: smaller fonts, proper colors matching skills section
+        if (id === 'sec-domains') {
+            clone.querySelectorAll('.domain-tag').forEach(t => {
+                t.style.fontSize = '7.5px';
+                t.style.color = 'var(--amber2)';
+                t.style.padding = '2px 7px';
+            });
+        }
+        if (id === 'sec-certs') {
+            clone.querySelectorAll('.cert-name').forEach(n => {
+                n.style.fontSize = '7.5px';
+                n.style.fontWeight = '600';
+                n.style.color = 'var(--text)';
+            });
+            clone.querySelectorAll('.cert-prov').forEach(n => {
+                n.style.fontSize = '7px';
+                n.style.color = 'var(--textsub)';
+            });
+            clone.querySelectorAll('.cert-yr').forEach(n => {
+                n.style.fontSize = '7px';
+                n.style.color = 'var(--amber)';
+            });
+            // Add visible cert URL for PDF
+            clone.querySelectorAll('.cert-row').forEach(row => {
+                const prov = row.querySelector('.cert-prov');
+                if (prov) {
+                    const urlDiv = document.createElement('div');
+                    urlDiv.style.fontSize = '6.5px';
+                    urlDiv.style.color = 'var(--cyan)';
+                    urlDiv.style.marginTop = '2px';
+                    urlDiv.textContent = 'ml.school/certificate?id=qovqbhrl8w';
+                    prov.parentNode.insertBefore(urlDiv, prov.nextSibling);
+                }
+            });
+        }
+        if (id === 'sec-education') {
+            clone.querySelectorAll('.edu-deg').forEach(n => {
+                n.style.fontSize = '7.5px';
+                n.style.fontWeight = '600';
+                n.style.color = 'var(--text)';
+            });
+            clone.querySelectorAll('.edu-school').forEach(n => {
+                n.style.fontSize = '7px';
+                n.style.color = 'var(--textsub)';
+            });
+            clone.querySelectorAll('.edu-bar').forEach(b => {
+                b.style.width = '2px';
+                b.style.background = 'var(--amber)';
+            });
+        }
+
         return clone.innerHTML;
     };
 
@@ -744,7 +973,7 @@ function goSection(id){
   // ensure expanded
   if(body && body.classList.contains('hidden')){
     body.classList.remove('hidden');
-    if(tog) tog.textContent='▾';
+    if(tog) tog.textContent='[-]';
     if(head) head.classList.add('open');
     setTimeout(()=>{ body.querySelectorAll('.sk-fill[data-w]').forEach(f=>{f.style.width=f.getAttribute('data-w');}); },60);
   }
@@ -762,9 +991,9 @@ function goSection(id){
 
 // boot
 [
-  {t:'Portfolio runtime v1.0.0',c:'sub',d:0},
+  {t:'Portfolio runtime '+VER,c:'sub',d:0},
   {t:'Loading Darshan Gandhi......... <span style="color:var(--green)">OK</span>',c:'sub',d:200},
-  {t:'Mounting 14 years of work...... <span style="color:var(--green)">OK</span>',c:'sub',d:380},
+  {t:`Mounting ${YRS} years of work...... <span style="color:var(--green)">OK</span>`,c:'sub',d:380},
   {t:'Initializing AI modules........ <span style="color:var(--green)">OK</span>',c:'sub',d:540},
   {t:'',c:'blank',d:680},
   {t:'  Type <span style="color:var(--amber2)">help</span> to explore.  Profile visible on the right →',c:'cy',d:720},
@@ -774,52 +1003,51 @@ setTimeout(typeName,200);
 setTimeout(()=>inp.focus(),950);
 </script>
   <div id="pdf-wrapper" style="position: absolute; left: -9999px; top: -9999px;">
-    <div id="pdf-template" style="width: 210mm; min-height: 297mm; background: var(--panel); color: var(--text); font-family: var(--mono); padding: 30px; box-sizing: border-box;">
+    <div id="pdf-template" style="width: 210mm; height: 297mm; background: var(--panel); color: var(--text); font-family: var(--mono); padding: 24px 28px; box-sizing: border-box; display: flex; flex-direction: column; overflow: hidden;">
         
-        <div style="display: flex; border-bottom: 2px solid var(--dimmer); padding-bottom: 15px; margin-bottom: 20px;">
-            <div style="flex: 1;">
-                <h1 style="color: var(--amber); font-size: 22px; margin: 0;">DARSHAN GANDHI</h1>
-                <p style="color: var(--amber2); font-size: 11px; margin-bottom: 10px;">Technical Architect</p>
-                <div style="color: var(--textsub); font-size: 9px; line-height: 1.4;">
-                    <div>📧 email@example.com | 📱 +91 00000 00000</div>
+        <div style="display: flex; border-bottom: 1px solid var(--dimmer);">
+            <div style="flex: 0.65; padding-right: 15px; border-right: 1px solid var(--dimmer); padding-bottom: 15px;">
+                <h1 style="color: var(--amber); font-size: 24px; margin: 0; font-weight: 800; line-height: 1;">DARSHAN GANDHI</h1>
+                <p style="color: var(--amber2); font-size: 11px; margin-top: 5px; font-weight: 700;">Technical Architect — Product Development</p>
+                <div style="color: var(--textsub); font-size: 8.5px; margin-top: 10px; line-height: 1.4;">
+                    <div>📧 dgandhi17@gmail.com | 📱 +91-8530046047</div>
                     <div>📍 Bangalore, India</div>
+                    <div>🔗 linkedin.com/in/i-darshan</div>
                 </div>
             </div>
-            <div style="flex: 1.2; padding-left: 20px; border-left: 1px solid var(--dimmer);">
-              <h3 style="color: var(--amber); font-size: 11px; margin-bottom: 6px; letter-spacing: 0.05em;">// PROFESSIONAL_SUMMARY</h3>
-              <p style="color: var(--text); font-size: 10.5px; line-height: 1.6; margin: 0; text-align: justify;">
-                  Technical Architect with 14+ years of experience specializing in high-performance desktop and mobile architecture. 
-                  Expert in .NET, Rust, and AI/ML orchestration. Proven track record in Telecommunications and Healthcare systems. 
-                  Currently focused on building agentic AI middleware and fine-tuning LLMs for professional-grade RAG pipelines.
-              </p>
-          </div>
+            <div style="flex: 1.35; padding-left: 20px; padding-bottom: 15px;">
+                <h3 style="color: var(--amber2); font-size: 11px; margin-bottom: 4px; font-weight: 800;">SUMMARY</h3>
+                <p style="color: var(--text); font-size: 10.5px; line-height: 1.4; margin: 0; text-align: justify;">
+                    Technical Architect with <span id="pdf-summary-years">14</span> years of experience designing and delivering mobile, backend, and telecom systems at scale. Specialized in cross-platform mobile development (Android, Xamarin, .NET MAUI), .NET backend services, and telecom platform engineering. Domain expertise spanning healthcare IoT (BLE medical devices), VoIP/telephony, field sales SaaS, and transportation.
+                </p>
+            </div>
         </div>
 
-        <div style="display: flex; gap: 30px; margin-top: 10px;">
-          <div style="flex: 0.75; padding-right: 20px; border-right: 1px solid var(--dimmer);">
-              <div style="margin-bottom: 20px;">
-                  <h3 style="color: var(--amber2); border-bottom: 1px solid var(--dimmer); font-size: 10px; margin-bottom: 8px; text-transform: uppercase;">Technical Stack</h3>
-                  <div id="pdf-skills-content" style="font-size: 8.5px;"></div>
-              </div>
-              <div style="margin-bottom: 20px;">
-                  <h3 style="color: var(--amber2); border-bottom: 1px solid var(--dimmer); font-size: 10px; margin-bottom: 8px; text-transform: uppercase;">Domains</h3>
-                  <div id="pdf-domains-content" style="font-size: 8.5px;"></div>
-              </div>
-              <div style="margin-bottom: 20px;">
-                  <h3 style="color: var(--amber2); border-bottom: 1px solid var(--dimmer); font-size: 10px; margin-bottom: 8px; text-transform: uppercase;">Certifications</h3>
-                  <div id="pdf-certs-content" style="font-size: 8.5px;"></div>
-              </div>
-              <div>
-                  <h3 style="color: var(--amber2); border-bottom: 1px solid var(--dimmer); font-size: 10px; margin-bottom: 8px; text-transform: uppercase;">Education</h3>
-                  <div id="pdf-edu-content" style="font-size: 8.5px;"></div>
-              </div>
-          </div>
-      
-          <div style="flex: 1.25;">
-              <h3 style="color: var(--amber2); border-bottom: 1px solid var(--dimmer); font-size: 10px; margin-bottom: 12px; text-transform: uppercase;">Professional Experience</h3>
-              <div id="pdf-exp-content" style="font-size: 9px; line-height: 1.35;"></div>
-          </div>
-      </div>
+        <div style="display: flex; flex: 1;">
+            <div style="flex: 0.65; padding-right: 15px; border-right: 1px solid var(--dimmer); padding-top: 15px;">
+                <div style="margin-bottom: 18px;">
+                    <h3 style="color: var(--amber); font-size: 10px; margin-bottom: 6px; text-transform: uppercase; font-weight: 800;">Technical Stack</h3>
+                    <div id="pdf-skills-content" style="font-size: 7.5px; color: var(--textsub);"></div>
+                </div>
+                <div style="margin-bottom: 18px;">
+                    <h3 style="color: var(--amber); font-size: 10px; margin-bottom: 6px; text-transform: uppercase; font-weight: 800;">Domains</h3>
+                    <div id="pdf-domains-content" style="font-size: 8px; color: var(--textsub);"></div>
+                </div>
+                <div style="margin-bottom: 18px;">
+                    <h3 style="color: var(--amber); font-size: 10px; margin-bottom: 6px; text-transform: uppercase; font-weight: 800;">Certifications</h3>
+                    <div id="pdf-certs-content" style="font-size: 8px; color: var(--textsub);"></div>
+                </div>
+                <div>
+                    <h3 style="color: var(--amber); font-size: 10px; margin-bottom: 6px; text-transform: uppercase; font-weight: 800;">Education</h3>
+                    <div id="pdf-edu-content" style="font-size: 8px; color: var(--textsub);"></div>
+                </div>
+            </div>
+
+            <div style="flex: 1.35; padding-left: 20px; padding-top: 15px;">
+                <h3 style="color: var(--amber); font-size: 10px; margin-bottom: 12px; text-transform: uppercase; font-weight: 800;">Professional Experience</h3>
+                <div id="pdf-exp-content" style="font-size: 9.2px; line-height: 1.35;"></div>
+            </div>
+        </div>
     </div>
 </div>
 </body>
