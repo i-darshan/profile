@@ -171,12 +171,17 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
   .p-stats{grid-template-columns:repeat(2,1fr);}
 }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
 <div class="shell">
 
   <div class="titlebar">
-    <div class="t-dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
+    <div class="t-dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+    <button id="pdf-export" onclick="exportToPDF()" style="background: var(--bg3); border: 1px solid var(--dimmer); color: var(--amber2); font-family: var(--mono); font-size: 10px; margin-left: 10px; padding: 2px 8px; cursor: pointer; border-radius: 4px;">
+        EXPORT PDF
+    </button>
+    </div>
     <span class="t-title">darshan@portfolio</span>
     <span class="t-right">Bangalore, India</span>
   </div>
@@ -570,7 +575,29 @@ function typeName(){
   if(ni<=NAME.length){ pName.innerHTML=NAME.slice(0,ni)+'<span class="cursor"></span>'; ni++; setTimeout(typeName,ni===1?500:65); }
   else { pName.innerHTML=NAME; }
 }
+// export to pdf
+  function exportToPDF() {
+    const element = document.getElementById('resume-template');
+    
+    // Sync data from your existing UI to the PDF template
+    document.getElementById('pdf-experience').innerHTML = document.querySelector('#sec-experience .p-sec-body').innerHTML;
+    document.getElementById('pdf-education').innerHTML = document.querySelector('#sec-education .p-sec-body').innerHTML;
+    document.getElementById('pdf-skills').innerHTML = document.querySelector('#sec-skills .p-sec-body').innerHTML;
+    
+    // Show template temporarily for capture
+    element.style.display = 'block';
 
+    const opt = {
+        margin:       0.5,
+        filename:     'Darshan_Gandhi_Resume.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2, useCORS: true },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+
+    html2pdf().set(opt).from(element).save().then(() => {
+        element.style.display = 'none'; // Hide it again
+    });
 // scroll-to section with expand + flash
 function goSection(id){
   const sec = document.getElementById(id);
@@ -610,6 +637,35 @@ function goSection(id){
 ].forEach(({t,c,d})=>setTimeout(()=>{tl(t,c);scroll();},d));
 setTimeout(typeName,200);
 setTimeout(()=>inp.focus(),950);
+  
+}
 </script>
+  <div id="resume-template" style="display: none; width: 800px; padding: 40px; background: #fff; color: #000; font-family: sans-serif;">
+    <div style="display: flex; gap: 40px;">
+        <div style="flex: 1; border-right: 1px solid #eee; padding-right: 20px;">
+            <h3 style="border-bottom: 2px solid #333;">SKILLS</h3>
+            <div id="pdf-skills"></div>
+            
+            <h3 style="border-bottom: 2px solid #333; margin-top: 20px;">DOMAINS</h3>
+            <div id="pdf-domains"></div>
+            
+            <h3 style="border-bottom: 2px solid #333; margin-top: 20px;">CERTIFICATIONS</h3>
+            <div id="pdf-certs"></div>
+        </div>
+
+        <div style="flex: 2;">
+            <div id="pdf-header" style="margin-bottom: 30px;">
+                <h1 style="margin: 0;">DARSHAN GANDHI</h1>
+                <p style="color: #666;">Technical Architect</p>
+            </div>
+
+            <h3 style="border-bottom: 2px solid #333;">PROJECTS & EXPERIENCE</h3>
+            <div id="pdf-experience"></div>
+
+            <h3 style="border-bottom: 2px solid #333; margin-top: 20px;">EDUCATION</h3>
+            <div id="pdf-education"></div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
