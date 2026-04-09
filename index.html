@@ -45,6 +45,7 @@ body.light-mode {
   --text:    #1e293b;
   --textsub: #475569;
   --cyan:    #0891b2;
+  --dimmer: #e2e8f0; /* Soft gray for the vertical line */
 }
 
 /* Ensure skill bars and titles look crisp in light mode */
@@ -700,6 +701,10 @@ function typeName(){
         clone.querySelectorAll('.sk-fill').forEach(f => {
             f.style.width = f.getAttribute('data-w') + '%';
         });
+        const allElements = clone.querySelectorAll('.job');
+        allElements.forEach(job => {
+            job.style.paddingLeft = '5px'; // Small breath away from the vertical line
+        });
         return clone.innerHTML;
     };
 
@@ -781,39 +786,40 @@ setTimeout(()=>inp.focus(),950);
                 </div>
             </div>
             <div style="flex: 1.2; padding-left: 20px; border-left: 1px solid var(--dimmer);">
-                <h3 style="color: var(--amber); font-size: 9px; margin-bottom: 4px;">// SUMMARY</h3>
-                <p style="color: var(--textsub); font-size: 9px; line-height: 1.5; margin: 0;">
-                    Technical Architect with 14+ years of experience. Expert in .NET, Rust, and AI/ML orchestration. 
-                    Specialized in high-performance desktop applications and telecom/medical systems.
-                </p>
-            </div>
+              <h3 style="color: var(--amber); font-size: 11px; margin-bottom: 6px; letter-spacing: 0.05em;">// PROFESSIONAL_SUMMARY</h3>
+              <p style="color: var(--text); font-size: 10.5px; line-height: 1.6; margin: 0; text-align: justify;">
+                  Technical Architect with 14+ years of experience specializing in high-performance desktop and mobile architecture. 
+                  Expert in .NET, Rust, and AI/ML orchestration. Proven track record in Telecommunications and Healthcare systems. 
+                  Currently focused on building agentic AI middleware and fine-tuning LLMs for professional-grade RAG pipelines.
+              </p>
+          </div>
         </div>
 
-        <div style="display: flex; gap: 20px;">
-            <div style="flex: 0.7;">
-                <div style="margin-bottom: 15px;">
-                    <h3 style="color: var(--amber2); border-bottom: 1px solid var(--dimmer); font-size: 10px; margin-bottom: 5px;">TECHNICAL</h3>
-                    <div id="pdf-skills-content" style="font-size: 8.5px;"></div>
-                </div>
-                <div style="margin-bottom: 15px;">
-                    <h3 style="color: var(--amber2); border-bottom: 1px solid var(--dimmer); font-size: 10px; margin-bottom: 5px;">DOMAINS</h3>
-                    <div id="pdf-domains-content" style="font-size: 8.5px;"></div>
-                </div>
-                <div style="margin-bottom: 15px;">
-                    <h3 style="color: var(--amber2); border-bottom: 1px solid var(--dimmer); font-size: 10px; margin-bottom: 5px;">CERTIFICATIONS</h3>
-                    <div id="pdf-certs-content" style="font-size: 8.5px;"></div>
-                </div>
-                <div>
-                    <h3 style="color: var(--amber2); border-bottom: 1px solid var(--dimmer); font-size: 10px; margin-bottom: 5px;">EDUCATION</h3>
-                    <div id="pdf-edu-content" style="font-size: 8.5px;"></div>
-                </div>
-            </div>
-
-            <div style="flex: 1.3;">
-                <h3 style="color: var(--amber2); border-bottom: 1px solid var(--dimmer); font-size: 10px; margin-bottom: 10px;">EXPERIENCE</h3>
-                <div id="pdf-exp-content" style="font-size: 9px; line-height: 1.3;"></div>
-            </div>
-        </div>
+        <div style="display: flex; gap: 30px; margin-top: 10px;">
+          <div style="flex: 0.75; padding-right: 20px; border-right: 1px solid var(--dimmer);">
+              <div style="margin-bottom: 20px;">
+                  <h3 style="color: var(--amber2); border-bottom: 1px solid var(--dimmer); font-size: 10px; margin-bottom: 8px; text-transform: uppercase;">Technical Stack</h3>
+                  <div id="pdf-skills-content" style="font-size: 8.5px;"></div>
+              </div>
+              <div style="margin-bottom: 20px;">
+                  <h3 style="color: var(--amber2); border-bottom: 1px solid var(--dimmer); font-size: 10px; margin-bottom: 8px; text-transform: uppercase;">Domains</h3>
+                  <div id="pdf-domains-content" style="font-size: 8.5px;"></div>
+              </div>
+              <div style="margin-bottom: 20px;">
+                  <h3 style="color: var(--amber2); border-bottom: 1px solid var(--dimmer); font-size: 10px; margin-bottom: 8px; text-transform: uppercase;">Certifications</h3>
+                  <div id="pdf-certs-content" style="font-size: 8.5px;"></div>
+              </div>
+              <div>
+                  <h3 style="color: var(--amber2); border-bottom: 1px solid var(--dimmer); font-size: 10px; margin-bottom: 8px; text-transform: uppercase;">Education</h3>
+                  <div id="pdf-edu-content" style="font-size: 8.5px;"></div>
+              </div>
+          </div>
+      
+          <div style="flex: 1.25;">
+              <h3 style="color: var(--amber2); border-bottom: 1px solid var(--dimmer); font-size: 10px; margin-bottom: 12px; text-transform: uppercase;">Professional Experience</h3>
+              <div id="pdf-exp-content" style="font-size: 9px; line-height: 1.35;"></div>
+          </div>
+      </div>
     </div>
 </div>
 </body>
