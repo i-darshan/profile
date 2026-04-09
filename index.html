@@ -30,6 +30,29 @@
   --split:   390px;
 }
 
+/* ── LIGHT THEME PALETTE ── */
+body.light-mode {
+  --bg:      #f8fafc;
+  --bg2:     #f1f5f9;
+  --bg3:     #e2e8f0;
+  --panel:   #ffffff;
+  --amber:   #2563eb; /* Professional Blue */
+  --amber2:  #1e40af;
+  --amber3:  #1e3a8a;
+  --dim:     #64748b;
+  --dimmer:  #cbd5e0;
+  --dimmost: #f1f5f9;
+  --text:    #1e293b;
+  --textsub: #475569;
+  --cyan:    #0891b2;
+}
+
+/* Ensure skill bars and titles look crisp in light mode */
+body.light-mode .t-title { color: var(--amber2); }
+body.light-mode .sb-left { color: #ffffff; }
+body.light-mode .statusbar { background: var(--amber); border-color: var(--amber2); }
+body.light-mode #pdf-export { background: #ffffff; color: var(--amber); }
+
 html,body{height:100%;overflow:hidden;background:var(--bg);}
 body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
 
@@ -253,6 +276,9 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
 
   <div class="t-right-group">
     <span class="t-right">Bangalore, India</span>
+    <button id="theme-toggle" onclick="toggleTheme()" style="background:none; border:none; cursor:pointer; color:var(--dim); display:flex; align-items:center;">
+      <svg id="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    </button>
     <button id="pdf-export" onclick="exportToPDF()">
       EXPORT PDF
     </button>
@@ -647,42 +673,44 @@ function typeName(){
   if(ni<=NAME.length){ pName.innerHTML=NAME.slice(0,ni)+'<span class="cursor"></span>'; ni++; setTimeout(typeName,ni===1?500:65); }
   else { pName.innerHTML=NAME; }
 }
+  //toggle theme
+  function toggleTheme() {
+    const body = document.body;
+    const icon = document.getElementById('theme-icon');
+    body.classList.toggle('light-mode');
+    
+    // Switch icon between Sun and Moon
+    if (body.classList.contains('light-mode')) {
+        icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>'; // Moon
+    } else {
+        icon.innerHTML = '<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>'; // Sun
+    }
+}
 // export to pdf
   async function exportToPDF() {
-    const template = document.getElementById('pdf-template');
+    const element = document.querySelector('.profile-pane');
+    const isLight = document.body.classList.contains('light-mode');
     
-    const getInner = (id) => {
-        const el = document.querySelector(`#${id} .p-sec-body`);
-        if (!el) return '';
-        // Clean up internal margins and specific portfolio styles for the PDF
-        let html = el.innerHTML;
-        html = html.replace(/margin-bottom:[^;]+;/g, 'margin-bottom:4px;');
-        html = html.replace(/padding:[^;]+;/g, 'padding:0;');
-        return html;
-    };
-
-    document.getElementById('pdf-skills-content').innerHTML = getInner('sec-skills');
-    document.getElementById('pdf-domains-content').innerHTML = getInner('sec-domains');
-    document.getElementById('pdf-certs-content').innerHTML = getInner('sec-certs');
-    document.getElementById('pdf-exp-content').innerHTML = getInner('sec-experience');
-    document.getElementById('pdf-edu-content').innerHTML = getInner('sec-education');
+    // Ensure all sections are expanded before export
+    const hiddenSections = element.querySelectorAll('.p-sec-body.hidden');
+    hiddenSections.forEach(s => s.classList.remove('hidden'));
 
     const opt = {
-        margin: 0,
-        filename: 'Darshan_Gandhi_Architect_CV.pdf',
-        image: { type: 'jpeg', quality: 1.0 },
-        html2canvas: { 
-            scale: 3, // Higher scale for text clarity
-            useCORS: true,
-            backgroundColor: '#ffffff' 
+        margin:       10,
+        filename:     'Darshan_Gandhi_Resume.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { 
+            scale: 2, 
+            useCORS: true, 
+            backgroundColor: isLight ? '#ffffff' : '#120e08' 
         },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
     try {
-        await html2pdf().set(opt).from(template).save();
-    } catch (err) {
-        console.error("Export failed:", err);
+        await html2pdf().set(opt).from(element).save();
+    } finally {
+        // Optional: Re-hide sections if you want to restore UI state
     }
 }
 // scroll-to section with expand + flash
