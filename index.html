@@ -178,12 +178,12 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
 
   <div class="titlebar">
     <div class="t-dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
-    <button id="pdf-export" onclick="exportToPDF()" style="background: var(--bg3); border: 1px solid var(--dimmer); color: var(--amber2); font-family: var(--mono); font-size: 10px; margin-left: 10px; padding: 2px 8px; cursor: pointer; border-radius: 4px;">
-        EXPORT PDF
-    </button>
     </div>
     <span class="t-title">darshan@portfolio</span>
     <span class="t-right">Bangalore, India</span>
+    <button id="pdf-export" onclick="exportToPDF()" style="background: var(--bg3); border: 1px solid var(--dimmer); color: var(--amber2); font-family: var(--mono); font-size: 10px; margin-left: 10px; padding: 2px 8px; cursor: pointer; border-radius: 4px;">
+        EXPORT PDF
+    </button>
   </div>
 
   <div class="main">
@@ -578,38 +578,38 @@ function typeName(){
   async function exportToPDF() {
     const template = document.getElementById('pdf-template');
     
-    // Helper to get clean HTML from your current UI
     const getInner = (id) => {
         const el = document.querySelector(`#${id} .p-sec-body`);
-        return el ? el.innerHTML : '';
+        if (!el) return '';
+        // Clean up internal margins and specific portfolio styles for the PDF
+        let html = el.innerHTML;
+        html = html.replace(/margin-bottom:[^;]+;/g, 'margin-bottom:4px;');
+        html = html.replace(/padding:[^;]+;/g, 'padding:0;');
+        return html;
     };
 
-    // Inject content
     document.getElementById('pdf-skills-content').innerHTML = getInner('sec-skills');
     document.getElementById('pdf-domains-content').innerHTML = getInner('sec-domains');
     document.getElementById('pdf-certs-content').innerHTML = getInner('sec-certs');
     document.getElementById('pdf-exp-content').innerHTML = getInner('sec-experience');
     document.getElementById('pdf-edu-content').innerHTML = getInner('sec-education');
 
-    // PDF Configuration
     const opt = {
         margin: 0,
-        filename: 'Darshan_Gandhi_Resume.pdf',
+        filename: 'Darshan_Gandhi_Architect_CV.pdf',
         image: { type: 'jpeg', quality: 1.0 },
         html2canvas: { 
-            scale: 2, 
+            scale: 3, // Higher scale for text clarity
             useCORS: true,
-            logging: false,
-            backgroundColor: '#0f0b08' // Forces the dark background in PDF
+            backgroundColor: '#ffffff' 
         },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
-    // Generate PDF
     try {
         await html2pdf().set(opt).from(template).save();
     } catch (err) {
-        console.error("PDF Export failed:", err);
+        console.error("Export failed:", err);
     }
 }
 // scroll-to section with expand + flash
@@ -653,52 +653,50 @@ setTimeout(typeName,200);
 setTimeout(()=>inp.focus(),950);
 </script>
   <div id="pdf-wrapper" style="position: absolute; left: -9999px; top: -9999px;">
-    <div id="pdf-template" style="width: 210mm; min-height: 297mm; background: #0f0b08; color: #e2cfa0; font-family: 'JetBrains Mono', monospace; padding: 40px; box-sizing: border-box;">
+    <div id="pdf-template" style="width: 210mm; min-height: 297mm; background: #ffffff; color: #333; font-family: 'Segoe UI', sans-serif; padding: 30px; box-sizing: border-box; line-height: 1.3;">
         
-        <div style="display: flex; border-bottom: 2px solid #3d2e18; padding-bottom: 20px; margin-bottom: 20px;">
+        <div style="display: flex; border-bottom: 2px solid #222; padding-bottom: 15px; margin-bottom: 15px;">
             <div style="flex: 1;">
-                <h1 style="color: #d4863a; font-size: 28px; margin: 0; letter-spacing: 2px;">DARSHAN GANDHI</h1>
-                <p style="color: #e8a84e; font-size: 14px; margin-bottom: 15px;">Technical Architect</p>
-                <div style="color: #9a8060; font-size: 11px; line-height: 1.6;">
-                    <div>📧 your.email@example.com</div>
-                    <div>📱 +91 XX XXXX XXXX</div>
-                    <div>🔗 github.com/i-darshan</div>
-                    <div>📍 Bangalore, India</div>
+                <h1 style="color: #1a365d; font-size: 24px; margin: 0; font-weight: 800;">DARSHAN GANDHI</h1>
+                <p style="color: #2c5282; font-size: 12px; font-weight: 600; margin-bottom: 8px;">Technical Architect</p>
+                <div style="color: #4a5568; font-size: 9.5px; line-height: 1.4;">
+                    <div>📧 dgandhi17@gmail.com | 📱 +91 8530046047</div>
+                    <div>🔗 github.com/i-darshan | 📍 Bangalore, India</div>
                 </div>
             </div>
-            <div style="flex: 1.2; padding-left: 25px; border-left: 1px solid #3d2e18;">
-                <h3 style="color: #d4863a; font-size: 11px; margin-bottom: 8px;">// ARCHITECT_SUMMARY</h3>
-                <p style="color: #e2cfa0; font-size: 11px; line-height: 1.6; text-align: justify;">
-                    Technical Architect with 14+ years of experience specializing in high-performance desktop and mobile architecture. Expert in .NET, Rust, and AI/ML orchestration. Proven track record in Telecommunications and Healthcare (Medtronic). Currently focused on building agentic AI middleware and fine-tuning LLMs for professional-grade RAG pipelines.
+            <div style="flex: 1.2; padding-left: 20px; border-left: 1px solid #e2e8f0;">
+                <h3 style="color: #1a365d; font-size: 10px; margin-bottom: 4px; text-transform: uppercase;">Professional Summary</h3>
+                <p style="color: #4a5568; font-size: 9.5px; text-align: justify; margin: 0;">
+                    Technical Architect with 14+ years of expertise in high-performance desktop and mobile architecture (.NET, Rust, AI/ML). 
+                    Specialized in building complex systems for Telecommunications and Healthcare. Currently architecting 
+                    agentic AI middleware and fine-tuning LLMs for specialized RAG pipelines.
                 </p>
             </div>
         </div>
 
-        <div style="display: flex; gap: 30px;">
-            <div style="flex: 0.8;">
-                <div style="margin-bottom: 25px;">
-                    <h3 style="color: #d4863a; border-bottom: 1px solid #3d2e18; padding-bottom: 4px; font-size: 12px; margin-bottom: 10px;">TECHNICAL_STACK</h3>
-                    <div id="pdf-skills-content" style="font-size: 10px;"></div>
+        <div style="display: flex; gap: 25px;">
+            <div style="flex: 0.7; background: #f8fafc; padding: 15px; border-radius: 4px;">
+                <div style="margin-bottom: 18px;">
+                    <h3 style="color: #2c5282; border-bottom: 1px solid #cbd5e0; font-size: 11px; margin-bottom: 8px; text-transform: uppercase;">Technical Stack</h3>
+                    <div id="pdf-skills-content" style="font-size: 9px; color: #4a5568;"></div>
                 </div>
-                <div style="margin-bottom: 25px;">
-                    <h3 style="color: #d4863a; border-bottom: 1px solid #3d2e18; padding-bottom: 4px; font-size: 12px; margin-bottom: 10px;">DOMAINS</h3>
-                    <div id="pdf-domains-content" style="font-size: 10px;"></div>
+                <div style="margin-bottom: 18px;">
+                    <h3 style="color: #2c5282; border-bottom: 1px solid #cbd5e0; font-size: 11px; margin-bottom: 8px; text-transform: uppercase;">Industries</h3>
+                    <div id="pdf-domains-content" style="font-size: 9px; color: #4a5568;"></div>
+                </div>
+                <div style="margin-bottom: 18px;">
+                    <h3 style="color: #2c5282; border-bottom: 1px solid #cbd5e0; font-size: 11px; margin-bottom: 8px; text-transform: uppercase;">Certifications</h3>
+                    <div id="pdf-certs-content" style="font-size: 9px; color: #4a5568;"></div>
                 </div>
                 <div>
-                    <h3 style="color: #d4863a; border-bottom: 1px solid #3d2e18; padding-bottom: 4px; font-size: 12px; margin-bottom: 10px;">CERTIFICATIONS</h3>
-                    <div id="pdf-certs-content" style="font-size: 10px;"></div>
+                    <h3 style="color: #2c5282; border-bottom: 1px solid #cbd5e0; font-size: 11px; margin-bottom: 8px; text-transform: uppercase;">Education</h3>
+                    <div id="pdf-edu-content" style="font-size: 9px; color: #4a5568;"></div>
                 </div>
             </div>
 
-            <div style="flex: 1.2;">
-                <div style="margin-bottom: 25px;">
-                    <h3 style="color: #d4863a; border-bottom: 1px solid #3d2e18; padding-bottom: 4px; font-size: 12px; margin-bottom: 10px;">EXPERIENCE</h3>
-                    <div id="pdf-exp-content" style="font-size: 10px; line-height: 1.4;"></div>
-                </div>
-                <div>
-                    <h3 style="color: #d4863a; border-bottom: 1px solid #3d2e18; padding-bottom: 4px; font-size: 12px; margin-bottom: 10px;">EDUCATION</h3>
-                    <div id="pdf-edu-content" style="font-size: 11px;"></div>
-                </div>
+            <div style="flex: 1.3;">
+                <h3 style="color: #1a365d; border-bottom: 1px solid #e2e8f0; font-size: 11px; margin-bottom: 10px; text-transform: uppercase;">Professional Experience</h3>
+                <div id="pdf-exp-content" style="font-size: 9.5px; line-height: 1.25; color: #2d3748;"></div>
             </div>
         </div>
     </div>
