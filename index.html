@@ -159,8 +159,10 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
 .profile-pane::-webkit-scrollbar-thumb{background:var(--dimmer);}
 
 /* 1. NAME / CONTACT */
-.p-header{padding:18px 18px 14px;border-bottom:1px solid var(--dimmer);flex-shrink:0;}
-.p-name{font-size:20px;font-weight:700;color:var(--amber);letter-spacing:0.1em;line-height:1.1;margin-bottom:6px;}
+.p-header{padding:18px 18px 14px;border-bottom:1px solid var(--dimmer);flex-shrink:0;display:flex;align-items:flex-start;gap:16px;}
+.p-avatar{width:110px;border-radius:4px;border:2px solid var(--dimmer);flex-shrink:0;object-fit:cover;align-self:stretch;}
+.p-header-right{flex:1;min-width:0;}
+.p-name{font-size:20px;font-weight:700;color:var(--amber);letter-spacing:0.1em;line-height:1.1;margin-bottom:4px;}
 .p-name .cursor{display:inline-block;width:12px;height:17px;background:var(--amber);vertical-align:middle;margin-left:3px;animation:blink 1s step-end infinite;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 .p-role{font-size:11px;color:var(--amber2);letter-spacing:0.03em;margin-bottom:7px;}
@@ -317,19 +319,22 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
 
       <!-- 1. NAME / CONTACT -->
       <div class="p-header">
-        <div class="p-name" id="p-name"><span class="cursor"></span></div>
-        <div class="p-role">Technical Architect — Product Development</div>
-        <div class="contact-inline">
-          <span class="ci"><span>loc</span>Bangalore, India</span>
-          <span class="ci"><span>email</span><a href="mailto:dgandhi17@gmail.com">dgandhi17@gmail.com</a></span>
-          <span class="ci"><span>tel</span><a href="tel:+918530046047">+91-8530046047</a></span>
-          <span class="ci"><span>li</span><a href="https://linkedin.com/in/i-darshan" target="_blank">linkedin.com/in/i-darshan</a></span>
-        </div>
-        <div class="p-stats">
-          <div class="p-stat" style="cursor:default"><div class="p-stat-n" id="stat-years">14+</div><div class="p-stat-l">years</div></div>
-          <div class="p-stat p-stat-link" onclick="goSection('sec-domains')" title="View Domains"><div class="p-stat-n">4</div><div class="p-stat-l">domains ↗</div></div>
-          <div class="p-stat p-stat-link" onclick="goSection('sec-experience')" title="View Experience"><div class="p-stat-n">4</div><div class="p-stat-l">companies ↗</div></div>
-          <div class="p-stat p-stat-link" onclick="goSection('sec-projects')" title="View AI Project"><div class="p-stat-n">1</div><div class="p-stat-l">ai project ↗</div></div>
+        <img src="assets/me-ai.png" alt="Darshan Gandhi" class="p-avatar"/>
+        <div class="p-header-right">
+          <div class="p-name" id="p-name"><span class="cursor"></span></div>
+          <div class="p-role">Technical Architect — Product Development</div>
+          <div class="contact-inline">
+            <span class="ci"><span>loc</span>Bangalore, India</span>
+            <span class="ci"><span>email</span><a href="mailto:dgandhi17@gmail.com">dgandhi17@gmail.com</a></span>
+            <span class="ci"><span>tel</span><a href="tel:+918530046047">+91-8530046047</a></span>
+            <span class="ci"><span>li</span><a href="https://linkedin.com/in/i-darshan" target="_blank">linkedin.com/in/i-darshan</a></span>
+          </div>
+          <div class="p-stats">
+            <div class="p-stat" style="cursor:default"><div class="p-stat-n" id="stat-years">14+</div><div class="p-stat-l">years</div></div>
+            <div class="p-stat p-stat-link" onclick="goSection('sec-domains')" title="View Domains"><div class="p-stat-n">4</div><div class="p-stat-l">domains ↗</div></div>
+            <div class="p-stat p-stat-link" onclick="goSection('sec-experience')" title="View Experience"><div class="p-stat-n">4</div><div class="p-stat-l">companies ↗</div></div>
+            <div class="p-stat p-stat-link" onclick="goSection('sec-projects')" title="View AI Project"><div class="p-stat-n">1</div><div class="p-stat-l">ai project ↗</div></div>
+          </div>
         </div>
       </div>
 
@@ -1044,7 +1049,10 @@ window.addEventListener('beforeunload',()=>{
         
         <div style="display: flex; border-bottom: 1px solid var(--dimmer);">
             <div style="flex: 0.65; padding-right: 15px; border-right: 1px solid var(--dimmer); padding-bottom: 15px;">
-                <h1 style="color: var(--amber); font-size: 24px; margin: 0; font-weight: 800; line-height: 1;">DARSHAN GANDHI</h1>
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+                    <img src="assets/me-ai.png" alt="Darshan Gandhi" style="width:44px;height:44px;border-radius:3px;border:1.5px solid var(--dimmer);object-fit:cover;"/>
+                    <h1 style="color: var(--amber); font-size: 24px; margin: 0; font-weight: 800; line-height: 1;">DARSHAN GANDHI</h1>
+                </div>
                 <p style="color: var(--amber2); font-size: 11px; margin-top: 5px; font-weight: 700;">Technical Architect — Product Development</p>
                 <div style="color: var(--textsub); font-size: 8.5px; margin-top: 10px; line-height: 1.4;">
                     <div>📧 dgandhi17@gmail.com | 📱 +91-8530046047</div>
