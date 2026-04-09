@@ -36,12 +36,76 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
 .shell{display:flex;flex-direction:column;height:100vh;max-width:1200px;margin:0 auto;border-left:1px solid var(--dimmer);border-right:1px solid var(--dimmer);}
 
 /* titlebar */
-.titlebar{display:flex;align-items:center;justify-content:space-between;height:30px;padding:0 14px;background:var(--bg2);border-bottom:1px solid var(--dimmer);flex-shrink:0;user-select:none;}
-.t-dots{display:flex;gap:6px;align-items:center;}
-.dot{width:10px;height:10px;border-radius:50%;}
-.dot.r{background:#7a3020;}.dot.y{background:#7a5820;}.dot.g{background:#306020;}
-.t-title{font-size:11px;color:var(--dim);letter-spacing:0.04em;}
-.t-right{font-size:10px;color:var(--dimmer);}
+.titlebar {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 14px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--dimmer);
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.t-left-group {
+  flex: 1; /* Occupies left 1/3 */
+  display: flex;
+  align-items: center;
+}
+
+.t-dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.dot.r { background: #7a3020; }
+.dot.y { background: #7a5820; }
+.dot.g { background: #306020; }
+
+.t-title {
+  flex: 0; /* Stays in the exact center */
+  white-space: nowrap;
+  font-size: 11px;
+  color: var(--dim);
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+.t-right-group {
+  flex: 1; /* Occupies right 1/3 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.t-right {
+  font-size: 10px;
+  color: var(--dimmer);
+}
+
+#pdf-export {
+  background: var(--bg3);
+  border: 1px solid var(--dimmer);
+  color: var(--amber2);
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 2px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+#pdf-export:hover {
+  background: var(--dimmer);
+  color: var(--amber);
+}
 
 .main{display:flex;flex:1;overflow:hidden;}
 
@@ -177,14 +241,23 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
 <div class="shell">
 
   <div class="titlebar">
-    <div class="t-dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+  <div class="t-left-group">
+    <div class="t-dots">
+      <div class="dot r"></div>
+      <div class="dot y"></div>
+      <div class="dot g"></div>
     </div>
-    <span class="t-title">darshan@portfolio</span>
+  </div>
+
+  <span class="t-title">darshan@portfolio</span>
+
+  <div class="t-right-group">
     <span class="t-right">Bangalore, India</span>
-    <button id="pdf-export" onclick="exportToPDF()" style="background: var(--bg3); border: 1px solid var(--dimmer); color: var(--amber2); font-family: var(--mono); font-size: 10px; margin-left: 10px; padding: 2px 8px; cursor: pointer; border-radius: 4px;">
-        EXPORT PDF
+    <button id="pdf-export" onclick="exportToPDF()">
+      EXPORT PDF
     </button>
   </div>
+</div>
 
   <div class="main">
 
