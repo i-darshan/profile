@@ -667,7 +667,7 @@ const CMDS = {
     trow('  location','Bangalore, India');
     blank();
   },
-  clear(){ output.innerHTML=''; return true; },
+  clear(){ output.innerHTML=''; CMDS.help(); scroll(); return true; },
   download(){
     blank();
     tl('  Generating PDF...','sub');
