@@ -202,10 +202,11 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
 .sk-group-label:first-child{margin-top:0;}
 .sk-row{display:flex;align-items:center;gap:8px;margin:3px 0;}
 .sk-name{font-size:11px;color:var(--text);min-width:130px;flex-shrink:0;}
-.sk-track{flex:1;height:4px;background:var(--dimmer);}
-.sk-fill{height:100%;background:var(--amber);transition:width 1s cubic-bezier(.22,1,.36,1);}
-.sk-fill.g{background:var(--amber2);}
-.sk-fill.b{background:var(--cyan);}
+.sk-bar{flex:1;font-size:10px;letter-spacing:1px;white-space:nowrap;}
+.sk-bar .filled{color:var(--amber);}
+.sk-bar .empty{color:var(--dimmer);}
+.sk-bar.g .filled{color:var(--amber2);}
+.sk-bar.b .filled{color:var(--cyan);}
 .sk-pct{font-size:10px;color:var(--dim);min-width:28px;text-align:right;}
 
 /* certs */
@@ -360,30 +361,30 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
         </div>
         <div class="p-sec-body hidden" id="p-skills">
           <div class="sk-group-label">Mobile</div>
-          <div class="sk-row"><span class="sk-name">Android (Java/Kotlin)</span><div class="sk-track"><div class="sk-fill" style="width:0" data-w="95%"></div></div><span class="sk-pct">95%</span></div>
-          <div class="sk-row"><span class="sk-name">Xamarin / .NET MAUI</span><div class="sk-track"><div class="sk-fill" style="width:0" data-w="92%"></div></div><span class="sk-pct">92%</span></div>
-          <div class="sk-row"><span class="sk-name">BLE / IoT</span><div class="sk-track"><div class="sk-fill" style="width:0" data-w="85%"></div></div><span class="sk-pct">85%</span></div>
+          <div class="sk-row"><span class="sk-name">Android (Java/Kotlin)</span><span class="sk-bar" data-w="95"></span><span class="sk-pct">95%</span></div>
+          <div class="sk-row"><span class="sk-name">Xamarin / .NET MAUI</span><span class="sk-bar" data-w="92"></span><span class="sk-pct">92%</span></div>
+          <div class="sk-row"><span class="sk-name">BLE / IoT</span><span class="sk-bar" data-w="85"></span><span class="sk-pct">85%</span></div>
 
           <div class="sk-group-label">Backend</div>
-          <div class="sk-row"><span class="sk-name">.NET / ASP.NET</span><div class="sk-track"><div class="sk-fill" style="width:0" data-w="88%"></div></div><span class="sk-pct">88%</span></div>
-          <div class="sk-row"><span class="sk-name">REST APIs</span><div class="sk-track"><div class="sk-fill" style="width:0" data-w="90%"></div></div><span class="sk-pct">90%</span></div>
-          <div class="sk-row"><span class="sk-name">SQL Server / SPs</span><div class="sk-track"><div class="sk-fill" style="width:0" data-w="85%"></div></div><span class="sk-pct">85%</span></div>
+          <div class="sk-row"><span class="sk-name">.NET / ASP.NET</span><span class="sk-bar" data-w="88"></span><span class="sk-pct">88%</span></div>
+          <div class="sk-row"><span class="sk-name">REST APIs</span><span class="sk-bar" data-w="90"></span><span class="sk-pct">90%</span></div>
+          <div class="sk-row"><span class="sk-name">SQL Server / SPs</span><span class="sk-bar" data-w="85"></span><span class="sk-pct">85%</span></div>
 
           <div class="sk-group-label">AI / ML</div>
-          <div class="sk-row"><span class="sk-name">LLM Fine-tuning (LoRA)</span><div class="sk-track"><div class="sk-fill g" style="width:0" data-w="75%"></div></div><span class="sk-pct">75%</span></div>
-          <div class="sk-row"><span class="sk-name">RAG / ChromaDB</span><div class="sk-track"><div class="sk-fill g" style="width:0" data-w="72%"></div></div><span class="sk-pct">72%</span></div>
-          <div class="sk-row"><span class="sk-name">FastAPI / Ollama</span><div class="sk-track"><div class="sk-fill g" style="width:0" data-w="78%"></div></div><span class="sk-pct">78%</span></div>
-          <div class="sk-row"><span class="sk-name">GGUF Quantization</span><div class="sk-track"><div class="sk-fill g" style="width:0" data-w="70%"></div></div><span class="sk-pct">70%</span></div>
+          <div class="sk-row"><span class="sk-name">LLM Fine-tuning (LoRA)</span><span class="sk-bar g" data-w="68"></span><span class="sk-pct">68%</span></div>
+          <div class="sk-row"><span class="sk-name">RAG / ChromaDB</span><span class="sk-bar g" data-w="65"></span><span class="sk-pct">65%</span></div>
+          <div class="sk-row"><span class="sk-name">FastAPI / Ollama</span><span class="sk-bar g" data-w="70"></span><span class="sk-pct">70%</span></div>
+          <div class="sk-row"><span class="sk-name">GGUF Quantization</span><span class="sk-bar g" data-w="65"></span><span class="sk-pct">65%</span></div>
 
           <div class="sk-group-label">Cloud &amp; DevOps</div>
-          <div class="sk-row"><span class="sk-name">Jenkins / GH Actions</span><div class="sk-track"><div class="sk-fill b" style="width:0" data-w="80%"></div></div><span class="sk-pct">80%</span></div>
-          <div class="sk-row"><span class="sk-name">CI/CD Pipelines</span><div class="sk-track"><div class="sk-fill b" style="width:0" data-w="82%"></div></div><span class="sk-pct">82%</span></div>
-          <div class="sk-row"><span class="sk-name">PowerShell</span><div class="sk-track"><div class="sk-fill b" style="width:0" data-w="72%"></div></div><span class="sk-pct">72%</span></div>
+          <div class="sk-row"><span class="sk-name">Jenkins / GH Actions</span><span class="sk-bar b" data-w="80"></span><span class="sk-pct">80%</span></div>
+          <div class="sk-row"><span class="sk-name">CI/CD Pipelines</span><span class="sk-bar b" data-w="82"></span><span class="sk-pct">82%</span></div>
+          <div class="sk-row"><span class="sk-name">PowerShell</span><span class="sk-bar b" data-w="72"></span><span class="sk-pct">72%</span></div>
 
           <div class="sk-group-label">Security &amp; Integrations</div>
-          <div class="sk-row"><span class="sk-name">OWASP / TLS / SQLCipher</span><div class="sk-track"><div class="sk-fill" style="width:0" data-w="82%"></div></div><span class="sk-pct">82%</span></div>
-          <div class="sk-row"><span class="sk-name">Salesforce / WorldPay</span><div class="sk-track"><div class="sk-fill" style="width:0" data-w="80%"></div></div><span class="sk-pct">80%</span></div>
-          <div class="sk-row"><span class="sk-name">Firebase / FCM / E911</span><div class="sk-track"><div class="sk-fill" style="width:0" data-w="85%"></div></div><span class="sk-pct">85%</span></div>
+          <div class="sk-row"><span class="sk-name">OWASP / TLS / SQLCipher</span><span class="sk-bar" data-w="82"></span><span class="sk-pct">82%</span></div>
+          <div class="sk-row"><span class="sk-name">Salesforce / WorldPay</span><span class="sk-bar" data-w="80"></span><span class="sk-pct">80%</span></div>
+          <div class="sk-row"><span class="sk-name">Firebase / FCM / E911</span><span class="sk-bar" data-w="85"></span><span class="sk-pct">85%</span></div>
         </div>
       </div>
 
@@ -523,9 +524,24 @@ function ptoggle(head){
   const tog=head.querySelector('.p-sec-toggle');
   const hidden=body.classList.toggle('hidden');
   tog.textContent=hidden?'[+]':'[-]';
-  if(!hidden) setTimeout(()=>{ body.querySelectorAll('.sk-fill[data-w]').forEach(f=>{f.style.width=f.getAttribute('data-w');}); },60);
+  if(!hidden) setTimeout(()=>{ renderBars(body, true); },60);
 }
-setTimeout(()=>{ document.querySelectorAll('.p-sec-body:not(.hidden) .sk-fill[data-w]').forEach(f=>{f.style.width=f.getAttribute('data-w');}); },500);
+function renderBars(container, animate){
+  container.querySelectorAll('.sk-bar[data-w]').forEach((bar,i)=>{
+    const pct=parseInt(bar.getAttribute('data-w'));
+    const total=12, filled=Math.round(pct/100*total), empty=total-filled;
+    if(animate){
+      bar.innerHTML='<span class="filled"></span><span class="empty">'+'░'.repeat(total)+'</span>';
+      setTimeout(()=>{
+        bar.querySelector('.filled').textContent='█'.repeat(filled);
+        bar.querySelector('.empty').textContent='░'.repeat(empty);
+      },60+i*40);
+    } else {
+      bar.innerHTML='<span class="filled">'+'█'.repeat(filled)+'</span><span class="empty">'+'░'.repeat(empty)+'</span>';
+    }
+  });
+}
+setTimeout(()=>{ document.querySelectorAll('.p-sec-body:not(.hidden)').forEach(c=>renderBars(c)); },500);
 
 // Auto-calculated career version (career start: Jan 2012)
 const CAREER_START = new Date(2012, 0);
@@ -536,7 +552,8 @@ const totalMonths = careerYears * 12 + careerMonths;
 const VER = `v${Math.floor(totalMonths/12)}.${totalMonths%12}`;
 const YRS = `${Math.floor(totalMonths/12)}+`;
 const YRS_NUM = `${Math.floor(totalMonths/12)}`;
-document.getElementById('stat-years').textContent = YRS;
+const YRS_PRECISE = `${Math.floor(totalMonths/12)}.${totalMonths%12}`;
+document.getElementById('stat-years').textContent = YRS_PRECISE;
 document.getElementById('summary-years').textContent = YRS_NUM;
 document.addEventListener('DOMContentLoaded', ()=>{
   const pdfYrs = document.getElementById('pdf-summary-years');
@@ -596,10 +613,10 @@ const CMDS = {
     sbar('  SQL Server',85);
     blank();
     tl('  ── ai / ml ─────────────────────────────','hd'); blank();
-    sbar('  LLM Fine-tuning (LoRA)',75,'--amber2');
-    sbar('  RAG / ChromaDB',72,'--amber2');
-    sbar('  FastAPI / Ollama',78,'--amber2');
-    sbar('  GGUF Quantization',70,'--amber2');
+    sbar('  LLM Fine-tuning (LoRA)',68,'--amber2');
+    sbar('  RAG / ChromaDB',65,'--amber2');
+    sbar('  FastAPI / Ollama',70,'--amber2');
+    sbar('  GGUF Quantization',65,'--amber2');
     blank();
     tl('  ── cloud & devops ───────────────────────','hd'); blank();
     sbar('  Jenkins / GH Actions',80,'--cyan');
@@ -848,6 +865,7 @@ function typeName(){
 
         // Skills section: bold headers, smaller/lighter skill rows, dotted dividers
         if (id === 'sec-skills') {
+            renderBars(clone);
             clone.querySelectorAll('.sk-group-label').forEach((label, i, all) => {
                 label.style.fontWeight = '700';
                 label.style.fontSize = '8.5px';
@@ -867,19 +885,9 @@ function typeName(){
                 n.style.fontSize = '6.5px';
                 n.style.color = 'var(--dim)';
             });
-            clone.querySelectorAll('.sk-track').forEach(t => {
-                t.style.height = '3px';
-            });
-            clone.querySelectorAll('.sk-fill').forEach(f => {
-                f.style.width = f.getAttribute('data-w');
-                f.style.height = '100%';
-                f.style.opacity = '0.7';
-            });
-        } else {
-            // Other sections: animate skill bars if any
-            clone.querySelectorAll('.sk-fill').forEach(f => {
-                f.style.width = f.getAttribute('data-w') + '%';
-                f.style.backgroundColor = 'var(--amber)';
+            clone.querySelectorAll('.sk-bar').forEach(b => {
+                b.style.fontSize = '7px';
+                b.style.letterSpacing = '0.5px';
             });
         }
 
@@ -975,7 +983,7 @@ function goSection(id){
     body.classList.remove('hidden');
     if(tog) tog.textContent='[-]';
     if(head) head.classList.add('open');
-    setTimeout(()=>{ body.querySelectorAll('.sk-fill[data-w]').forEach(f=>{f.style.width=f.getAttribute('data-w');}); },60);
+    setTimeout(()=>{ renderBars(body, true); },60);
   }
   // scroll within profile pane
   setTimeout(()=>{
