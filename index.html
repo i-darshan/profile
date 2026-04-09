@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Alex Morgan — Senior Software Architect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0d14;
+    --bg2: #12121e;
+    --bg3: #1a1a2e;
+    --surface: #1e1e32;
+    --surface2: #252540;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #e2e2f0;
+    --muted: #7878a0;
+    --accent: #7c6af7;
+    --accent2: #4fc0a0;
+    --accent3: #f06b6b;
+    --accent4: #f0a060;
+    --green: #4fc0a0;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Syne', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* grid bg */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(124,106,247,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(124,106,247,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
+
+  /* ───── HERO ───── */
+  .hero { margin-bottom: 3rem; }
+
+  .term-chrome {
+    background: #111120;
+    border-radius: 10px 10px 0 0;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border2);
+    border-bottom: none;
+  }
+  .dot { width: 11px; height: 11px; border-radius: 50%; }
+  .dot.r { background: #ff5f57; }
+  .dot.y { background: #febc2e; }
+  .dot.g { background: #28c840; }
+  .term-path { color: var(--muted); font-size: 11px; margin-left: 6px; }
+  .term-path span { color: var(--accent2); }
+
+  .hero-body {
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    padding: 2.5rem 2rem 2rem;
+  }
+
+  .prompt-line { color: var(--accent2); font-size: 12px; margin-bottom: 2px; opacity: 0; animation: fadein 0.4s 0.2s forwards; }
+  .cmd-line { color: var(--muted); font-size: 12px; margin-bottom: 2rem; opacity: 0; animation: fadein 0.4s 0.5s forwards; }
+  .cmd-line em { color: var(--accent); font-style: normal; }
+
+  .name {
+    font-family: var(--sans);
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.05;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: slidein 0.6s 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 3px; height: 0.85em;
+    background: var(--accent);
+    vertical-align: middle;
+    margin-left: 4px;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1}50%{opacity:0} }
+
+  .role {
+    font-size: 13px;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadein 0.5s 1s forwards;
+  }
+  .role::before { content: '→ '; color: var(--accent3); }
+
+  .badges {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadein 0.5s 1.1s forwards;
+  }
+  .badge {
+    font-size: 11px; padding: 3px 10px;
+    border-radius: 4px;
+    border: 1px solid;
+    font-family: var(--mono);
+    letter-spacing: 0.02em;
+  }
+  .b-v { background: rgba(124,106,247,0.1); color: var(--accent); border-color: rgba(124,106,247,0.3); }
+  .b-g { background: rgba(79,192,160,0.1); color: var(--accent2); border-color: rgba(79,192,160,0.3); }
+  .b-r { background: rgba(240,107,107,0.1); color: var(--accent3); border-color: rgba(240,107,107,0.3); }
+  .b-o { background: rgba(240,160,96,0.1); color: var(--accent4); border-color: rgba(240,160,96,0.3); }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 10px;
+    opacity: 0;
+    animation: fadein 0.5s 1.3s forwards;
+  }
+  .stat {
+    background: rgba(124,106,247,0.05);
+    border: 1px solid rgba(124,106,247,0.15);
+    border-radius: 8px;
+    padding: 12px 10px;
+    text-align: center;
+  }
+  .stat-n { font-family: var(--sans); font-size: 1.8rem; font-weight: 700; color: var(--accent); line-height: 1; }
+  .stat-l { font-size: 10px; color: var(--muted); margin-top: 3px; }
+
+  /* ───── NAV ───── */
+  .nav {
+    display: flex; gap: 4px; flex-wrap: wrap;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadein 0.5s 1.5s forwards;
+  }
+  .nav-btn {
+    font-family: var(--mono); font-size: 11px;
+    padding: 5px 14px; border-radius: 5px;
+    border: 1px solid var(--border2);
+    background: transparent; color: var(--muted);
+    cursor: pointer; transition: all 0.15s;
+  }
+  .nav-btn:hover, .nav-btn.active {
+    background: var(--surface); color: var(--text); border-color: var(--accent);
+  }
+
+  /* ───── SECTIONS ───── */
+  .section {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadein 0.5s forwards;
+  }
+  .sec-head {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 18px;
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+    transition: background 0.15s;
+    user-select: none;
+  }
+  .sec-head:hover { background: var(--surface); }
+  .sec-head.open { border-bottom-color: var(--border); }
+
+  .sec-icon {
+    width: 30px; height: 30px; border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; flex-shrink: 0;
+  }
+  .ic-v { background: rgba(124,106,247,0.15); color: var(--accent); }
+  .ic-g { background: rgba(79,192,160,0.15); color: var(--accent2); }
+  .ic-o { background: rgba(240,160,96,0.15); color: var(--accent4); }
+  .ic-b { background: rgba(100,160,240,0.15); color: #64a0f0; }
+  .ic-r { background: rgba(240,107,107,0.15); color: var(--accent3); }
+
+  .sec-title { font-family: var(--sans); font-weight: 500; font-size: 14px; flex: 1; }
+  .sec-count { font-size: 11px; color: var(--muted); }
+  .chevron { font-size: 10px; color: var(--muted); transition: transform 0.2s; }
+  .chevron.open { transform: rotate(90deg); }
+
+  .sec-body { display: none; padding: 18px; }
+  .sec-body.open { display: block; }
+
+  /* ───── EXPERIENCE ───── */
+  .job { padding-bottom: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+  .job:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .job-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 4px; }
+  .job-title { font-family: var(--sans); font-weight: 600; font-size: 14px; color: #fff; }
+  .job-period { font-size: 11px; color: var(--accent2); }
+  .job-co { font-size: 12px; color: var(--accent); margin: 3px 0 8px; }
+  .job-co::before { content: '// '; color: var(--muted); }
+  .job-desc { font-size: 12px; color: var(--muted); line-height: 1.7; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .tag {
+    font-size: 10px; padding: 2px 8px; border-radius: 3px;
+    background: var(--surface); color: var(--muted);
+    border: 1px solid var(--border2);
+  }
+
+  /* ───── SKILLS ───── */
+  .skill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap: 10px; }
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+  }
+  .skill-top { display: flex; justify-content: space-between; margin-bottom: 8px; }
+  .skill-name { font-size: 11px; font-weight: 500; color: var(--text); }
+  .skill-pct { font-size: 10px; color: var(--muted); }
+  .skill-bar { height: 3px; background: var(--border2); border-radius: 2px; overflow: hidden; }
+  .skill-fill { height: 100%; border-radius: 2px; transition: width 1.2s cubic-bezier(0.22,1,0.36,1); }
+  .sf-v { background: var(--accent); }
+  .sf-g { background: var(--accent2); }
+  .sf-o { background: var(--accent4); }
+  .sf-r { background: var(--accent3); }
+  .sf-b { background: #64a0f0; }
+
+  /* ───── CERTS ───── */
+  .cert-list { list-style: none; }
+  .cert-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+    font-size: 12px;
+  }
+  .cert-item:last-child { border-bottom: none; }
+  .cert-name { color: var(--text); }
+  .cert-provider { font-size: 10px; color: var(--muted); margin-top: 2px; }
+  .cert-year { color: var(--accent2); font-size: 11px; flex-shrink: 0; margin-left: 12px; }
+
+  /* ───── EDUCATION ───── */
+  .edu-item { display: flex; gap: 14px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .edu-item:last-child { border-bottom: none; }
+  .edu-line { width: 2px; background: var(--accent); border-radius: 2px; flex-shrink: 0; align-self: stretch; min-height: 40px; }
+  .edu-degree { font-weight: 500; font-size: 13px; color: #fff; }
+  .edu-school { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  /* ───── CONTACT ───── */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .contact-item {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 12px;
+  }
+  .contact-lbl { font-size: 10px; color: var(--muted); margin-bottom: 4px; }
+  .contact-val { font-size: 12px; color: var(--text); }
+  .contact-val a { color: var(--accent); text-decoration: none; }
+  .contact-val a:hover { text-decoration: underline; }
+
+  /* ───── OSS ───── */
+  .oss-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 12px; }
+  .oss-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 14px;
+  }
+  .oss-name { font-weight: 500; font-size: 13px; color: var(--accent); margin-bottom: 4px; }
+  .oss-desc { font-size: 11px; color: var(--muted); line-height: 1.6; }
+  .oss-stars { font-size: 11px; color: var(--accent4); margin-top: 8px; }
+
+  /* ───── FOOTER ───── */
+  footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .footer-left { font-size: 11px; color: var(--muted); }
+  .footer-left span { color: var(--accent2); }
+  .footer-links { display: flex; gap: 16px; }
+  .footer-links a { font-size: 11px; color: var(--muted); text-decoration: none; transition: color 0.15s; }
+  .footer-links a:hover { color: var(--accent); }
+
+  /* ───── KEYFRAMES ───── */
+  @keyframes fadein { from{opacity:0} to{opacity:1} }
+  @keyframes slidein { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+  /* ───── RESPONSIVE ───── */
+  @media(max-width:600px){
+    .stats { grid-template-columns: repeat(2,1fr); }
+    .contact-grid { grid-template-columns: 1fr; }
+    .name { font-size: 2rem; }
+    .hero-body { padding: 1.5rem 1rem; }
+  }
+
+  /* ───── SCROLLBAR ───── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 3px; }
+
+  /* ───── SELECTION ───── */
+  ::selection { background: rgba(124,106,247,0.3); }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="term-chrome">
+      <div class="dot r"></div>
+      <div class="dot y"></div>
+      <div class="dot g"></div>
+      <span class="term-path"><span>~/portfolio</span> — zsh — 80×24</span>
+    </div>
+    <div class="hero-body">
+      <div class="prompt-line">$ cat profile.json</div>
+      <div class="cmd-line"><em>→</em> loading <em>13 years</em> of experience...</div>
+
+      <div class="name">Alex Morgan<span class="cursor"></span></div>
+      <div class="role">Senior Software Architect &amp; Engineering Lead</div>
+
+      <div class="badges">
+        <span class="badge b-v">13+ years exp</span>
+        <span class="badge b-g">Full Stack</span>
+        <span class="badge b-g">Cloud Native</span>
+        <span class="badge b-o">AI / ML</span>
+        <span class="badge b-v">Distributed Systems</span>
+        <span class="badge b-r">Team Lead</span>
+        <span class="badge b-g">Open Source</span>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><div class="stat-n">13+</div><div class="stat-l">years_exp</div></div>
+        <div class="stat"><div class="stat-n">50+</div><div class="stat-l">projects</div></div>
+        <div class="stat"><div class="stat-n">8</div><div class="stat-l">certifications</div></div>
+        <div class="stat"><div class="stat-n">3</div><div class="stat-l">open_source</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <div class="nav">
+    <button class="nav-btn active" onclick="scrollTo('exp')">// experience</button>
+    <button class="nav-btn" onclick="scrollTo('skills')">// skills</button>
+    <button class="nav-btn" onclick="scrollTo('oss')">// open source</button>
+    <button class="nav-btn" onclick="scrollTo('certs')">// certifications</button>
+    <button class="nav-btn" onclick="scrollTo('edu')">// education</button>
+    <button class="nav-btn" onclick="scrollTo('contact')">// contact</button>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="section" id="exp" style="animation-delay:0.1s">
+    <div class="sec-head open" onclick="toggle(this)">
+      <div class="sec-icon ic-v">◈</div>
+      <span class="sec-title">Experience</span>
+      <span class="sec-count">5 roles · 13 years</span>
+      <span class="chevron open">▶</span>
+    </div>
+    <div class="sec-body open">
+
+      <div class="job">
+        <div class="job-top">
+          <span class="job-title">Senior Software Architect</span>
+          <span class="job-period">2020 — present</span>
+        </div>
+        <div class="job-co">TechCorp Global · San Francisco, CA</div>
+        <div class="job-desc">Designed and scaled microservices infrastructure handling 50M+ daily requests. Led a cross-functional team of 12 engineers across 3 time zones. Drove migration from legacy monolith to cloud-native architecture on AWS, reducing P99 latency by 40% and infrastructure costs by 30%. Introduced AI-assisted code review tooling adopted company-wide.</div>
+        <div class="tags">
+          <span class="tag">Kubernetes</span><span class="tag">AWS</span><span class="tag">Go</span>
+          <span class="tag">gRPC</span><span class="tag">Terraform</span><span class="tag">ArgoCD</span>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="job-top">
+          <span class="job-title">Lead Backend Engineer</span>
+          <span class="job-period">2017 — 2020</span>
+        </div>
+        <div class="job-co">DataStream Inc. · New York, NY</div>
+        <div class="job-desc">Built real-time data pipelines processing 10TB/day using Kafka and Flink. Introduced event-driven architecture that improved system reliability to 99.97% uptime. Mentored a team of 6 engineers and established internal engineering standards.</div>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">Kafka</span><span class="tag">Flink</span>
+          <span class="tag">PostgreSQL</span><span class="tag">Redis</span><span class="tag">Spark</span>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="job-top">
+          <span class="job-title">Full Stack Developer</span>
+          <span class="job-period">2014 — 2017</span>
+        </div>
+        <div class="job-co">StartupXYZ · Remote</div>
+        <div class="job-desc">Built product from 0 to 1. Owned the entire stack — React frontend, Node.js APIs, PostgreSQL, and DevOps. Helped scale the platform from 5k to 300k monthly active users, maintaining feature velocity through rapid growth.</div>
+        <div class="tags">
+          <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MongoDB</span>
+          <span class="tag">Docker</span><span class="tag">Stripe API</span>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="job-top">
+          <span class="job-title">Software Engineer</span>
+          <span class="job-period">2011 — 2014</span>
+        </div>
+        <div class="job-co">Enterprise Solutions Ltd. · Chicago, IL</div>
+        <div class="job-desc">Developed internal ERP tooling, REST APIs, and automated reporting systems. Led code review processes and mentored junior developers. Reduced manual reporting time by 70% through automated dashboards.</div>
+        <div class="tags">
+          <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">MySQL</span>
+          <span class="tag">Jenkins</span><span class="tag">Hibernate</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section" id="skills" style="animation-delay:0.2s">
+    <div class="sec-head" onclick="toggle(this)">
+      <div class="sec-icon ic-g">⬡</div>
+      <span class="sec-title">Tech stack</span>
+      <span class="sec-count">languages · cloud · infra</span>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="sec-body">
+      <div class="skill-grid">
+        <div class="skill-card"><div class="skill-top"><span class="skill-name">Python</span><span class="skill-pct">95%</span></div><div class="skill-bar"><div class="skill-fill sf-v" style="width:0" data-w="95%"></div></div></div>
+        <div class="skill-card"><div class="skill-top"><span class="skill-name">Go</span><span class="skill-pct">88%</span></div><div class="skill-bar"><div class="skill-fill sf-g" style="width:0" data-w="88%"></div></div></div>
+        <div class="skill-card"><div class="skill-top"><span class="skill-name">TypeScript</span><span class="skill-pct">90%</span></div><div class="skill-bar"><div class="skill-fill sf-b" style="width:0" data-w="90%"></div></div></div>
+        <div class="skill-card"><div class="skill-top"><span class="skill-name">React / Next.js</span><span class="skill-pct">85%</span></div><div class="skill-bar"><div class="skill-fill sf-r" style="width:0" data-w="85%"></div></div></div>
+        <div class="skill-card"><div class="skill-top"><span class="skill-name">Kubernetes</span><span class="skill-pct">88%</span></div><div class="skill-bar"><div class="skill-fill sf-v" style="width:0" data-w="88%"></div></div></div>
+        <div class="skill-card"><div class="skill-top"><span class="skill-name">AWS / GCP</span><span class="skill-pct">92%</span></div><div class="skill-bar"><div class="skill-fill sf-o" style="width:0" data-w="92%"></div></div></div>
+        <div class="skill-card"><div class="skill-top"><span class="skill-name">Terraform</span><span class="skill-pct">80%</span></div><div class="skill-bar"><div class="skill-fill sf-g" style="width:0" data-w="80%"></div></div></div>
+        <div class="skill-card"><div class="skill-top"><span class="skill-name">AI / ML (LLMs)</span><span class="skill-pct">75%</span></div><div class="skill-bar"><div class="skill-fill sf-v" style="width:0" data-w="75%"></div></div></div>
+        <div class="skill-card"><div class="skill-top"><span class="skill-name">PostgreSQL</span><span class="skill-pct">87%</span></div><div class="skill-bar"><div class="skill-fill sf-b" style="width:0" data-w="87%"></div></div></div>
+        <div class="skill-card"><div class="skill-top"><span class="skill-name">Apache Kafka</span><span class="skill-pct">82%</span></div><div class="skill-bar"><div class="skill-fill sf-r" style="width:0" data-w="82%"></div></div></div>
+        <div class="skill-card"><div class="skill-top"><span class="skill-name">Docker</span><span class="skill-pct">93%</span></div><div class="skill-bar"><div class="skill-fill sf-g" style="width:0" data-w="93%"></div></div></div>
+        <div class="skill-card"><div class="skill-top"><span class="skill-name">GraphQL</span><span class="skill-pct">78%</span></div><div class="skill-bar"><div class="skill-fill sf-o" style="width:0" data-w="78%"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPEN SOURCE -->
+  <div class="section" id="oss" style="animation-delay:0.25s">
+    <div class="sec-head" onclick="toggle(this)">
+      <div class="sec-icon ic-b">❋</div>
+      <span class="sec-title">Open source</span>
+      <span class="sec-count">3 projects</span>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="sec-body">
+      <div class="oss-grid">
+        <div class="oss-card">
+          <div class="oss-name">go-pipe</div>
+          <div class="oss-desc">Lightweight type-safe pipeline library for Go. Composable middleware, zero-allocation hot paths.</div>
+          <div class="oss-stars">★ 1.2k stars</div>
+        </div>
+        <div class="oss-card">
+          <div class="oss-name">k8s-cost-exporter</div>
+          <div class="oss-desc">Prometheus exporter for real-time Kubernetes cost visibility. Supports multi-cloud billing APIs.</div>
+          <div class="oss-stars">★ 860 stars</div>
+        </div>
+        <div class="oss-card">
+          <div class="oss-name">llm-chain</div>
+          <div class="oss-desc">Minimal Python framework for chaining LLM calls with typed I/O, retries, and observability.</div>
+          <div class="oss-stars">★ 540 stars</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CERTIFICATIONS -->
+  <div class="section" id="certs" style="animation-delay:0.3s">
+    <div class="sec-head" onclick="toggle(this)">
+      <div class="sec-icon ic-o">✦</div>
+      <span class="sec-title">Certifications</span>
+      <span class="sec-count">8 certs</span>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="sec-body">
+      <ul class="cert-list">
+        <li class="cert-item">
+          <div><div class="cert-name">AWS Solutions Architect – Professional</div><div class="cert-provider">Amazon Web Services</div></div>
+          <span class="cert-year">2023</span>
+        </li>
+        <li class="cert-item">
+          <div><div class="cert-name">Google Cloud Professional Data Engineer</div><div class="cert-provider">Google Cloud</div></div>
+          <span class="cert-year">2022</span>
+        </li>
+        <li class="cert-item">
+          <div><div class="cert-name">Certified Kubernetes Administrator (CKA)</div><div class="cert-provider">CNCF</div></div>
+          <span class="cert-year">2022</span>
+        </li>
+        <li class="cert-item">
+          <div><div class="cert-name">Hashicorp Terraform Associate</div><div class="cert-provider">HashiCorp</div></div>
+          <span class="cert-year">2021</span>
+        </li>
+        <li class="cert-item">
+          <div><div class="cert-name">MongoDB Certified Developer</div><div class="cert-provider">MongoDB University</div></div>
+          <span class="cert-year">2020</span>
+        </li>
+        <li class="cert-item">
+          <div><div class="cert-name">AWS Developer – Associate</div><div class="cert-provider">Amazon Web Services</div></div>
+          <span class="cert-year">2019</span>
+        </li>
+        <li class="cert-item">
+          <div><div class="cert-name">Certified Scrum Master (CSM)</div><div class="cert-provider">Scrum Alliance</div></div>
+          <span class="cert-year">2018</span>
+        </li>
+        <li class="cert-item">
+          <div><div class="cert-name">Oracle Certified Professional — Java SE</div><div class="cert-provider">Oracle</div></div>
+          <span class="cert-year">2015</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section" id="edu" style="animation-delay:0.35s">
+    <div class="sec-head" onclick="toggle(this)">
+      <div class="sec-icon ic-b">▣</div>
+      <span class="sec-title">Education</span>
+      <span class="sec-count">2 degrees</span>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="sec-body">
+      <div class="edu-item">
+        <div class="edu-line"></div>
+        <div>
+          <div class="edu-degree">M.Sc. Distributed Systems (part-time)</div>
+          <div class="edu-school">Stanford University · 2016</div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-line" style="background:var(--accent2)"></div>
+        <div>
+          <div class="edu-degree">B.Sc. Computer Science</div>
+          <div class="edu-school">MIT — Massachusetts Institute of Technology · 2011</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="section" id="contact" style="animation-delay:0.4s">
+    <div class="sec-head" onclick="toggle(this)">
+      <div class="sec-icon ic-r">✉</div>
+      <span class="sec-title">Contact</span>
+      <span class="sec-count">reach out</span>
+      <span class="chevron">▶</span>
+    </div>
+    <div class="sec-body">
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="contact-lbl">email</div>
+          <div class="contact-val"><a href="mailto:alex@morgan.dev">alex@morgan.dev</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-lbl">github</div>
+          <div class="contact-val"><a href="https://github.com/alexmorgan" target="_blank">github.com/alexmorgan</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-lbl">linkedin</div>
+          <div class="contact-val"><a href="https://linkedin.com/in/alexmorgan" target="_blank">linkedin.com/in/alexmorgan</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-lbl">location</div>
+          <div class="contact-val">San Francisco, CA 🇺🇸</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">built with <span>❤</span> · last updated 2026</div>
+    <div class="footer-links">
+      <a href="https://github.com/alexmorgan" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/alexmorgan" target="_blank">LinkedIn</a>
+      <a href="mailto:alex@morgan.dev">Email</a>
+    </div>
+  </footer>
+
+</div>
+  
+<script>
+  function toggle(header) {
+    const chevron = header.querySelector('.chevron');
+    const body = header.nextElementSibling;
+    const isOpen = body.classList.contains('open');
+    header.classList.toggle('open', !isOpen);
+    body.classList.toggle('open', !isOpen);
+    chevron.classList.toggle('open', !isOpen);
+    if (!isOpen) {
+      setTimeout(() => {
+        body.querySelectorAll('.skill-fill[data-w]').forEach(f => {
+          f.style.width = f.getAttribute('data-w');
+        });
+      }, 50);
+    }
+  }
+
+  function scrollTo(id) {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+
+  // Animate sections on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.section').forEach(s => observer.observe(s));
+  document.querySelectorAll('.nav, .badges, .stats, .prompt-line, .cmd-line, .role, .name').forEach(s => {
+    observer.observe(s);
+  });
+</script>
+</body>
+</html>
