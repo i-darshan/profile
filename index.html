@@ -264,6 +264,22 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
 .tl.sub{color:var(--textsub);}.tl.ac{color:var(--amber3);}.tl.dv{color:var(--dimmer);}
 .tl.cy{color:var(--cyan);}.tl.info{color:var(--text);}
 
+/* Scroll animations */
+.p-section{opacity:0;transform:translateY(12px);transition:opacity 0.5s ease,transform 0.5s ease;}
+.p-section.visible{opacity:1;transform:translateY(0);}
+.p-header{opacity:0;transform:translateY(12px);transition:opacity 0.5s ease,transform 0.5s ease;}
+.p-header.visible{opacity:1;transform:translateY(0);}
+
+/* Skill tooltips */
+.sk-row{position:relative;}
+.sk-tip{display:none;position:absolute;bottom:100%;left:130px;background:var(--bg2);border:1px solid var(--dimmer);color:var(--textsub);font-size:9px;padding:3px 8px;white-space:nowrap;z-index:10;pointer-events:none;border-radius:3px;}
+.sk-row:hover .sk-tip{display:block;}
+
+/* Sound toggle */
+.sound-toggle{background:none;border:none;cursor:pointer;color:rgba(15,11,8,0.55);font-family:var(--mono);font-size:10px;padding:0;display:inline-flex;align-items:center;gap:3px;vertical-align:middle;}
+.sound-toggle:hover{color:#0f0b08;}
+.sound-toggle svg{width:12px;height:12px;flex-shrink:0;}
+
 @media(max-width:700px){
   :root{--split:100%;}
   .main{flex-direction:column;}
@@ -373,31 +389,31 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
         </div>
         <div class="p-sec-body hidden" id="p-skills">
           <div class="sk-group-label">Mobile</div>
-          <div class="sk-row"><span class="sk-name">Android (Java/Kotlin)</span><span class="sk-bar" data-w="95"></span><span class="sk-pct">95%</span></div>
-          <div class="sk-row"><span class="sk-name">Xamarin / .NET MAUI</span><span class="sk-bar" data-w="92"></span><span class="sk-pct">92%</span></div>
-          <div class="sk-row"><span class="sk-name">BLE / IoT</span><span class="sk-bar" data-w="85"></span><span class="sk-pct">85%</span></div>
+          <div class="sk-row"><span class="sk-name">Android (Java/Kotlin)</span><span class="sk-bar" data-w="95"></span><span class="sk-pct">95%</span><span class="sk-tip">12+ years · All 4 companies</span></div>
+          <div class="sk-row"><span class="sk-name">Xamarin / .NET MAUI</span><span class="sk-bar" data-w="92"></span><span class="sk-pct">92%</span><span class="sk-tip">Harman, Wipro, Rishabh</span></div>
+          <div class="sk-row"><span class="sk-name">BLE / IoT</span><span class="sk-bar" data-w="85"></span><span class="sk-pct">85%</span><span class="sk-tip">Wipro · Medtronic pacemaker</span></div>
 
           <div class="sk-group-label">Backend</div>
-          <div class="sk-row"><span class="sk-name">.NET / ASP.NET</span><span class="sk-bar" data-w="88"></span><span class="sk-pct">88%</span></div>
-          <div class="sk-row"><span class="sk-name">REST APIs</span><span class="sk-bar" data-w="90"></span><span class="sk-pct">90%</span></div>
-          <div class="sk-row"><span class="sk-name">SQL Server / SPs</span><span class="sk-bar" data-w="85"></span><span class="sk-pct">85%</span></div>
+          <div class="sk-row"><span class="sk-name">.NET / ASP.NET</span><span class="sk-bar" data-w="88"></span><span class="sk-pct">88%</span><span class="sk-tip">Harman · GoDaddy app server</span></div>
+          <div class="sk-row"><span class="sk-name">REST APIs</span><span class="sk-bar" data-w="90"></span><span class="sk-pct">90%</span><span class="sk-tip">SOMOS, Salesforce, WorldPay APIs</span></div>
+          <div class="sk-row"><span class="sk-name">SQL Server / SPs</span><span class="sk-bar" data-w="85"></span><span class="sk-pct">85%</span><span class="sk-tip">Harman · Bulk DB ops, SQLCipher</span></div>
 
           <div class="sk-group-label">AI / ML</div>
-          <div class="sk-row"><span class="sk-name">LLM Fine-tuning (LoRA)</span><span class="sk-bar g" data-w="68"></span><span class="sk-pct">68%</span></div>
-          <div class="sk-row"><span class="sk-name">RAG / ChromaDB</span><span class="sk-bar g" data-w="65"></span><span class="sk-pct">65%</span></div>
-          <div class="sk-row"><span class="sk-name">FastAPI / Ollama</span><span class="sk-bar g" data-w="70"></span><span class="sk-pct">70%</span></div>
-          <div class="sk-row"><span class="sk-name">GGUF Quantization</span><span class="sk-bar g" data-w="65"></span><span class="sk-pct">65%</span></div>
+          <div class="sk-row"><span class="sk-name">LLM Fine-tuning (LoRA)</span><span class="sk-bar g" data-w="68"></span><span class="sk-pct">68%</span><span class="sk-tip">Vasudeva · Gemma 2 9B</span></div>
+          <div class="sk-row"><span class="sk-name">RAG / ChromaDB</span><span class="sk-bar g" data-w="65"></span><span class="sk-pct">65%</span><span class="sk-tip">Vasudeva · 701 Gita verses</span></div>
+          <div class="sk-row"><span class="sk-name">FastAPI / Ollama</span><span class="sk-bar g" data-w="70"></span><span class="sk-pct">70%</span><span class="sk-tip">Vasudeva · Local inference</span></div>
+          <div class="sk-row"><span class="sk-name">GGUF Quantization</span><span class="sk-bar g" data-w="65"></span><span class="sk-pct">65%</span><span class="sk-tip">Vasudeva · Q4_K_M export</span></div>
 
           <div class="sk-group-label">Cloud &amp; DevOps</div>
-          <div class="sk-row"><span class="sk-name">AWS (S3 / SQS / Transcribe)</span><span class="sk-bar b" data-w="75"></span><span class="sk-pct">75%</span></div>
-          <div class="sk-row"><span class="sk-name">Jenkins / GH Actions</span><span class="sk-bar b" data-w="80"></span><span class="sk-pct">80%</span></div>
-          <div class="sk-row"><span class="sk-name">CI/CD Pipelines</span><span class="sk-bar b" data-w="82"></span><span class="sk-pct">82%</span></div>
-          <div class="sk-row"><span class="sk-name">PowerShell</span><span class="sk-bar b" data-w="72"></span><span class="sk-pct">72%</span></div>
+          <div class="sk-row"><span class="sk-name">AWS (S3 / SQS / Transcribe)</span><span class="sk-bar b" data-w="75"></span><span class="sk-pct">75%</span><span class="sk-tip">Harman · Voicemail pipeline</span></div>
+          <div class="sk-row"><span class="sk-name">Jenkins / GH Actions</span><span class="sk-bar b" data-w="80"></span><span class="sk-pct">80%</span><span class="sk-tip">Harman · 10+ repos CI</span></div>
+          <div class="sk-row"><span class="sk-name">CI/CD Pipelines</span><span class="sk-bar b" data-w="82"></span><span class="sk-pct">82%</span><span class="sk-tip">Harman, Wipro</span></div>
+          <div class="sk-row"><span class="sk-name">PowerShell</span><span class="sk-bar b" data-w="72"></span><span class="sk-pct">72%</span><span class="sk-tip">Harman · Build automation</span></div>
 
           <div class="sk-group-label">Security &amp; Integrations</div>
-          <div class="sk-row"><span class="sk-name">OWASP / TLS / SQLCipher</span><span class="sk-bar" data-w="82"></span><span class="sk-pct">82%</span></div>
-          <div class="sk-row"><span class="sk-name">Salesforce / WorldPay</span><span class="sk-bar" data-w="80"></span><span class="sk-pct">80%</span></div>
-          <div class="sk-row"><span class="sk-name">Firebase / FCM / E911</span><span class="sk-bar" data-w="85"></span><span class="sk-pct">85%</span></div>
+          <div class="sk-row"><span class="sk-name">OWASP / TLS / SQLCipher</span><span class="sk-bar" data-w="82"></span><span class="sk-pct">82%</span><span class="sk-tip">Harman · Secret scanning, TLS 1.2</span></div>
+          <div class="sk-row"><span class="sk-name">Salesforce / WorldPay</span><span class="sk-bar" data-w="80"></span><span class="sk-pct">80%</span><span class="sk-tip">Harman · CRM + payments</span></div>
+          <div class="sk-row"><span class="sk-name">Firebase / FCM / E911</span><span class="sk-bar" data-w="85"></span><span class="sk-pct">85%</span><span class="sk-tip">Harman · FCMv1, emergency calling</span></div>
         </div>
       </div>
 
@@ -522,7 +538,12 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
 
   <div class="statusbar">
     <div class="sb-left"><span>● LIVE</span><span id="sb-cmd">try: help · skills · experience · whoami</span></div>
-    <div class="sb-right">↑↓ history &nbsp;·&nbsp; Tab autocomplete</div>
+    <div class="sb-right">
+      <button class="sound-toggle" id="sound-toggle" onclick="toggleSound()" title="Toggle typing sounds"><svg id="sound-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg> sound</button>
+      &nbsp;·&nbsp;
+      <span id="visitor-count" style="color:rgba(15,11,8,0.55)"></span>
+      ↑↓ history &nbsp;·&nbsp; Tab
+    </div>
   </div>
 
 </div>
@@ -580,11 +601,22 @@ function blank(){ tl('','blank'); }
 function scroll(){ output.scrollTop=output.scrollHeight; }
 function echoCmd(cmd){ const p=document.createElement('p'); p.className='tl echo'; p.innerHTML=`<span class="ps">darshan</span><span style="color:var(--dimmer)">@</span><span class="ph">portfolio</span> <span style="color:var(--amber)">$</span> ${cmd}`; output.appendChild(p); }
 function trow(k,v){ const d=document.createElement('div'); d.style.cssText='display:flex;gap:0;margin:2px 0;'; d.innerHTML=`<span style="color:var(--dim);min-width:110px;flex-shrink:0;">${k}</span><span style="color:var(--text);">${v}</span>`; output.appendChild(d); }
+let _tsbarQueue=[];
 function sbar(name,pct,col){
-  const r=document.createElement('div'); r.style.cssText='display:flex;align-items:center;gap:8px;margin:3px 0;';
-  r.innerHTML=`<span style="color:var(--text);min-width:160px;font-size:11px;">${name}</span><div style="width:100px;height:4px;background:var(--dimmer);flex-shrink:0;"><div style="height:100%;background:var(${col||'--amber'});width:0;transition:width 0.9s ease;" data-w="${pct}%"></div></div><span style="font-size:10px;color:var(--dim);min-width:28px;">${pct}%</span>`;
+  const total=12, filled=Math.round(pct/100*total), empty=total-filled;
+  const colVar=col||'--amber';
+  const r=document.createElement('p'); r.className='tl';
+  r.innerHTML=`  <span style="color:var(--text);display:inline-block;min-width:160px;font-size:11px;">${name}</span><span class="tsb" style="letter-spacing:1px;font-size:10px;"><span style="color:var(--dimmer)">${'░'.repeat(total)}</span></span> <span style="font-size:10px;color:var(--dim);">${pct}%</span>`;
   output.appendChild(r);
-  setTimeout(()=>{r.querySelector('[data-w]').style.width=pct+'%';},60);
+  _tsbarQueue.push({el:r.querySelector('.tsb'),filled,empty,col:colVar});
+}
+function flushBars(){
+  _tsbarQueue.forEach((b,i)=>{
+    setTimeout(()=>{
+      b.el.innerHTML=`<span style="color:var(${b.col})">${'█'.repeat(b.filled)}</span><span style="color:var(--dimmer)">${'░'.repeat(b.empty)}</span>`;
+    },60+i*40);
+  });
+  _tsbarQueue=[];
 }
 
 const CMDS = {
@@ -638,6 +670,7 @@ const CMDS = {
     sbar('  Jenkins / GH Actions',80,'--cyan');
     sbar('  CI/CD Pipelines',82,'--cyan');
     blank();
+    flushBars();
   },
   experience(){
     blank();
@@ -1045,6 +1078,52 @@ let _t0=Date.now();
 window.addEventListener('beforeunload',()=>{
   track('session_duration',{seconds:Math.round((Date.now()-_t0)/1000)});
 });
+
+// ── TYPING SOUND EFFECTS ──
+let soundEnabled = false;
+const audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+function playKey(){
+  if(!soundEnabled) return;
+  const osc=audioCtx.createOscillator();
+  const gain=audioCtx.createGain();
+  osc.connect(gain); gain.connect(audioCtx.destination);
+  osc.frequency.value=600+Math.random()*400;
+  osc.type='square';
+  gain.gain.setValueAtTime(0.015,audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.001,audioCtx.currentTime+0.06);
+  osc.start(); osc.stop(audioCtx.currentTime+0.06);
+}
+function toggleSound(){
+  soundEnabled=!soundEnabled;
+  if(soundEnabled) audioCtx.resume();
+  document.getElementById('sound-icon').innerHTML=soundEnabled?'<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>':'<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>';
+}
+inp.addEventListener('keydown',e=>{
+  if(e.key.length===1||e.key==='Backspace'||e.key==='Enter') playKey();
+});
+
+// ── SCROLL ANIMATIONS ──
+const profilePane=document.querySelector('.profile-pane');
+function checkVisible(){
+  const rect=profilePane.getBoundingClientRect();
+  document.querySelectorAll('.p-header,.p-section').forEach(el=>{
+    const r=el.getBoundingClientRect();
+    if(r.top<rect.bottom-20) el.classList.add('visible');
+  });
+}
+profilePane.addEventListener('scroll',checkVisible);
+setTimeout(checkVisible,100);
+
+// ── VISITOR COUNTER (CountAPI alternative: localStorage + estimate) ──
+(function(){
+  const vc=document.getElementById('visitor-count');
+  // Use a simple free hit counter via API
+  const ns='i-darshan-portfolio';
+  fetch('https://api.countapi.xyz/hit/'+ns+'/visits')
+    .then(r=>r.json())
+    .then(d=>{if(d.value) vc.textContent='visitor #'+d.value+' · ';})
+    .catch(()=>{});
+})();
 </script>
   <div id="pdf-wrapper" style="position: absolute; left: -9999px; top: -9999px;">
     <div id="pdf-template" style="width: 210mm; height: 297mm; background: var(--panel); color: var(--text); font-family: var(--mono); padding: 24px 28px; box-sizing: border-box; display: flex; flex-direction: column; overflow: hidden;">
