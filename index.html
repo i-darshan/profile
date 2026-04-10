@@ -389,6 +389,7 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
           <div class="sk-row"><span class="sk-name">GGUF Quantization</span><span class="sk-bar g" data-w="65"></span><span class="sk-pct">65%</span></div>
 
           <div class="sk-group-label">Cloud &amp; DevOps</div>
+          <div class="sk-row"><span class="sk-name">AWS (S3 / SQS / Transcribe)</span><span class="sk-bar b" data-w="75"></span><span class="sk-pct">75%</span></div>
           <div class="sk-row"><span class="sk-name">Jenkins / GH Actions</span><span class="sk-bar b" data-w="80"></span><span class="sk-pct">80%</span></div>
           <div class="sk-row"><span class="sk-name">CI/CD Pipelines</span><span class="sk-bar b" data-w="82"></span><span class="sk-pct">82%</span></div>
           <div class="sk-row"><span class="sk-name">PowerShell</span><span class="sk-bar b" data-w="72"></span><span class="sk-pct">72%</span></div>
@@ -431,11 +432,11 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
             <div class="job-period">Jun 2022 – Present</div>
             <ul class="job-bullets">
               <li>Architected SOMOS DNO telecom compliance integration — API client, scheduler, bulk DB ops, real-time notifications</li>
-              <li>Owned cross-platform iOS/Android app — voicemail transcription, FCMv1 migration, encrypted storage; leading Xamarin→MAUI modernization</li>
+              <li>Owned cross-platform iOS/Android app — voicemail transcription via AWS Transcribe (S3 + SQS pipeline), FCMv1 migration, encrypted storage; leading Xamarin→MAUI modernization</li>
               <li>Designed Salesforce CRM, WorldPay payment, and E911 integrations into .NET app server; eliminated 21K+ lines of technical debt</li>
               <li>Established secret scanning and pre-commit security hooks across 10+ repos; remediated SQL injection, TLS 1.2, BitSight findings</li>
             </ul>
-            <div class="job-tags"><span class="job-tag">Xamarin</span><span class="job-tag">.NET MAUI</span><span class="job-tag">SOMOS API</span><span class="job-tag">Salesforce</span><span class="job-tag">WorldPay</span><span class="job-tag">E911</span><span class="job-tag">FCMv1</span><span class="job-tag">SQLCipher</span></div>
+            <div class="job-tags"><span class="job-tag">Xamarin</span><span class="job-tag">.NET MAUI</span><span class="job-tag">SOMOS API</span><span class="job-tag">AWS Transcribe</span><span class="job-tag">S3</span><span class="job-tag">SQS</span><span class="job-tag">Salesforce</span><span class="job-tag">WorldPay</span><span class="job-tag">E911</span><span class="job-tag">FCMv1</span><span class="job-tag">SQLCipher</span></div>
           </div>
 
           <div class="job">
@@ -633,6 +634,7 @@ const CMDS = {
     sbar('  GGUF Quantization',65,'--amber2');
     blank();
     tl('  ── cloud & devops ───────────────────────','hd'); blank();
+    sbar('  AWS (S3/SQS/Transcribe)',75,'--cyan');
     sbar('  Jenkins / GH Actions',80,'--cyan');
     sbar('  CI/CD Pipelines',82,'--cyan');
     blank();
@@ -640,7 +642,7 @@ const CMDS = {
   experience(){
     blank();
     [
-      {t:'Technical Architect',p:'Jun 2022–Present',c:'Harman (GoDaddy–FreedomVoice)',d:'SOMOS DNO telecom compliance. iOS/Android app ownership. Salesforce, WorldPay, E911. Removed 21K+ lines of debt.'},
+      {t:'Technical Architect',p:'Jun 2022–Present',c:'Harman (GoDaddy–FreedomVoice)',d:'SOMOS DNO telecom compliance. iOS/Android app ownership. AWS Transcribe/S3/SQS. Salesforce, WorldPay, E911. Removed 21K+ lines of debt.'},
       {t:'Sr. Mobile Architect / TL',p:'Mar 2019–Jun 2022',c:'Wipro (Medtronic)',d:'BLE cardiac pacemaker app. Device-specific launch strategy. Led 8–10 devs. -80% app bundle size.'},
       {t:'Sr. Engineer → Mobile TL',p:'Jun 2013–Feb 2019',c:'Rishabh Software',d:'MapView Route Planner. +40% geocoding accuracy. Real-time cab dispatch with live GPS.'},
       {t:'Android Intern → Developer',p:'Jan 2012–Jun 2013',c:'Yudiz Solution',d:'IPL cricket widget — top-ranked on Google Play Store.'},
