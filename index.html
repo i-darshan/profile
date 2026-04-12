@@ -1020,12 +1020,12 @@ function typeName(){
     document.getElementById('pdf-exp-content').innerHTML = getCleanInner('sec-experience');
     document.getElementById('pdf-edu-content').innerHTML = getCleanInner('sec-education');
 
-    const opt = {
+   const opt = {
         margin: 0,
         filename: 'Darshan_Gandhi_Resume.pdf',
-        image: { type: 'jpeg', quality: 1.0 },
+        image: { type: 'jpeg', quality: 0.82 },
         html2canvas: { 
-            scale: 3, 
+            scale: 2, 
             useCORS: true,
             backgroundColor: isLight ? '#ffffff' : '#120e08'
         },
