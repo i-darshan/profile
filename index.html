@@ -914,15 +914,16 @@ function typeName(){
                 bullets.forEach(li => {
                     li.style.position = 'relative';
                     li.style.paddingLeft = '14px';
-                    li.style.marginBottom = '2px';
+                    li.style.marginBottom = '1px';
+                    li.style.lineHeight = '1.25';
                     li.innerHTML = `<span style="position:absolute; left:0; color:var(--dim);">→</span>` + li.innerHTML;
                 });
 
                 // Single dashed divider between companies
                 if (index < jobs.length - 1) {
                     j.style.borderBottom = '1px dashed var(--dim)';
-                    j.style.paddingBottom = '12px';
-                    j.style.marginBottom = '12px';
+                    j.style.paddingBottom = '6px';
+                    j.style.marginBottom = '6px';
                 } else {
                     j.style.borderBottom = 'none';
                     j.style.paddingBottom = '0';
@@ -940,22 +941,25 @@ function typeName(){
                 label.style.color = 'var(--amber2)';
                 label.style.textTransform = 'uppercase';
                 label.style.letterSpacing = '0.06em';
-                label.style.marginTop = i === 0 ? '0' : '8px';
-                label.style.marginBottom = '5px';
-                label.style.paddingTop = i === 0 ? '0' : '8px';
+                label.style.marginTop = i === 0 ? '0' : '6px';
+                label.style.marginBottom = '4px';
+                label.style.paddingTop = i === 0 ? '0' : '6px';
                 if (i > 0) label.style.borderTop = '1px dashed var(--dimmer)';
             });
             clone.querySelectorAll('.sk-name').forEach(n => {
-                n.style.fontSize = '7px';
+                n.style.fontSize = '8px';
                 n.style.color = 'var(--textsub)';
             });
             clone.querySelectorAll('.sk-pct').forEach(n => {
-                n.style.fontSize = '6.5px';
+                n.style.fontSize = '7px';
                 n.style.color = 'var(--dim)';
             });
             clone.querySelectorAll('.sk-bar').forEach(b => {
-                b.style.fontSize = '7px';
+                b.style.fontSize = '8px';
                 b.style.letterSpacing = '0.5px';
+            });
+            clone.querySelectorAll('.sk-row').forEach(r => {
+                r.style.margin = '2px 0';
             });
         }
 
@@ -1023,7 +1027,7 @@ function typeName(){
     const opt = {
         margin: 0,
         filename: 'Darshan_Gandhi_Resume.pdf',
-        image: { type: 'jpeg', quality: 0.82 },
+        image: { type: 'jpeg', quality: 0.95 },
         html2canvas: { 
             scale: 2, 
             useCORS: true,
@@ -1165,27 +1169,27 @@ setTimeout(checkVisible,100);
 
         <div style="display: flex; flex: 1;">
             <div style="flex: 0.65; padding-right: 15px; border-right: 1px solid var(--dimmer); padding-top: 10px;">
-                <div style="margin-bottom: 12px;">
+                <div style="margin-bottom: 18px;">
                     <h3 style="color: var(--amber); font-size: 10px; margin-bottom: 6px; text-transform: uppercase; font-weight: 800;">Technical Stack</h3>
-                    <div id="pdf-skills-content" style="font-size: 7.5px; color: var(--textsub);"></div>
+                    <div id="pdf-skills-content" style="font-size: 9px; color: var(--textsub);"></div>
                 </div>
-                <div style="margin-bottom: 12px;">
+                <div style="margin-bottom: 18px;">
                     <h3 style="color: var(--amber); font-size: 10px; margin-bottom: 6px; text-transform: uppercase; font-weight: 800;">Domains</h3>
-                    <div id="pdf-domains-content" style="font-size: 8px; color: var(--textsub);"></div>
+                    <div id="pdf-domains-content" style="font-size: 9px; color: var(--textsub);"></div>
                 </div>
-                <div style="margin-bottom: 12px;">
+                <div style="margin-bottom: 18px;">
                     <h3 style="color: var(--amber); font-size: 10px; margin-bottom: 6px; text-transform: uppercase; font-weight: 800;">Certifications</h3>
-                    <div id="pdf-certs-content" style="font-size: 8px; color: var(--textsub);"></div>
+                    <div id="pdf-certs-content" style="font-size: 9px; color: var(--textsub);"></div>
                 </div>
                 <div>
                     <h3 style="color: var(--amber); font-size: 10px; margin-bottom: 6px; text-transform: uppercase; font-weight: 800;">Education</h3>
-                    <div id="pdf-edu-content" style="font-size: 8px; color: var(--textsub);"></div>
+                    <div id="pdf-edu-content" style="font-size: 9px; color: var(--textsub);"></div>
                 </div>
             </div>
 
             <div style="flex: 1.35; padding-left: 20px; padding-top: 10px;">
                 <h3 style="color: var(--amber); font-size: 10px; margin-bottom: 8px; text-transform: uppercase; font-weight: 800;">Professional Experience</h3>
-                <div id="pdf-exp-content" style="font-size: 8.8px; line-height: 1.3;"></div>
+                <div id="pdf-exp-content" style="font-size: 8.5px; line-height: 1.25;"></div>
             </div>
         </div>
     </div>
