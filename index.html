@@ -361,7 +361,42 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
           <span class="p-sec-toggle">[-]</span>
         </div>
         <div class="p-sec-body">
-          <p class="summary-text">Technical Architect with <span id="summary-years">14</span> years of experience leading teams of up to 10 engineers and delivering cross-platform mobile, .NET backend, and telecom systems serving thousands of users. Architected SOMOS telecom compliance, AWS voicemail pipelines, and BLE medical device apps across healthcare, VoIP, and field sales domains. Security-first practitioner — OWASP, secret scanning, TLS remediation across 10+ repos. Currently pivoting into AI/ML with hands-on LLM fine-tuning and RAG pipeline development.</p>
+          <p class="summary-text">Technical Architect with <span id="summary-years">14</span> years of experience leading teams of up to 10 engineers and delivering cross-platform mobile, .NET backend, and telecom systems serving thousands of users. Architected SOMOS telecom compliance, AWS voicemail pipelines, and BLE medical device apps across healthcare, VoIP, and field sales domains. Security-first practitioner — OWASP, secret scanning, TLS remediation across 10+ repos. Currently pivoting into AI/ML — fine-tuned a 9B LLM, built RAG pipelines, and placed 1st Runner Up at the AWS AI League (AWS Summit Bengaluru 2026).</p>
+        </div>
+      </div>
+
+      <!-- ACHIEVEMENTS -->
+      <div class="p-section" id="sec-achievements">
+        <div class="p-sec-head" onclick="ptoggle(this)">
+          <div style="display:flex;align-items:center;"><svg class="p-sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg><span class="p-sec-title">Achievements</span></div>
+          <span class="p-sec-toggle">[-]</span>
+        </div>
+        <div class="p-sec-body">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="font-size:22px;">🥈</span>
+            <div>
+              <div style="font-size:13px;font-weight:700;color:var(--amber3);">1st Runner Up — AWS AI League</div>
+              <div style="font-size:10px;color:var(--cyan);">AWS Summit Bengaluru 2026 &nbsp;·&nbsp; <span style="color:var(--amber);">Apr 2026</span> &nbsp;·&nbsp; <span style="color:var(--green);">Championship Belt + $1,000 AWS Credits</span></div>
+            </div>
+          </div>
+          <p style="font-size:11px;color:var(--textsub);line-height:1.65;margin-bottom:10px;">
+            Built a fully autonomous AI agent using Amazon Bedrock AgentCore to navigate dungeon mazes, defeat challenges, and maximize score — all under tight time pressure. Qualified into the Top 3 finalists; final rounds required pure real-time situational prompting with no backend code changes allowed.
+          </p>
+          <ul style="list-style:none;padding:0;margin:0 0 10px 0;font-size:11px;color:var(--textsub);line-height:1.65;">
+            <li style="padding-left:14px;position:relative;margin-bottom:2px;"><span style="position:absolute;left:0;color:var(--dim);">→</span>Custom pathfinding Lambda — adaptive strategy based on maze layout</li>
+            <li style="padding-left:14px;position:relative;margin-bottom:2px;"><span style="position:absolute;left:0;color:var(--dim);">→</span>Web scraper &amp; code executor tools deployed as Lambda functions</li>
+            <li style="padding-left:14px;position:relative;margin-bottom:2px;"><span style="position:absolute;left:0;color:var(--dim);">→</span>Bedrock Guardrails tuned to handle conversational traps</li>
+            <li style="padding-left:14px;position:relative;margin-bottom:2px;"><span style="position:absolute;left:0;color:var(--dim);">→</span>AgentCore Memory for encrypted code recall across challenges</li>
+            <li style="padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--dim);">→</span>Token optimization &amp; real-time situational prompting in finals</li>
+          </ul>
+          <div class="proj-stack">
+            <span class="proj-tag">Amazon Bedrock</span>
+            <span class="proj-tag">AgentCore</span>
+            <span class="proj-tag">AWS Lambda</span>
+            <span class="proj-tag">Guardrails</span>
+            <span class="proj-tag">AI Agents</span>
+            <span class="proj-tag">Prompt Engineering</span>
+          </div>
         </div>
       </div>
 
@@ -545,7 +580,7 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
   </div><!-- /main -->
 
   <div class="statusbar">
-    <div class="sb-left"><span>● LIVE</span><span id="sb-cmd">try: help · skills · experience · whoami</span></div>
+    <div class="sb-left"><span>● LIVE</span><span id="sb-cmd">try: help · awards · skills · experience</span></div>
     <div class="sb-right">
       <button class="sound-toggle" id="sound-toggle" onclick="toggleSound()" title="Toggle typing sounds"><svg id="sound-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg> sound</button>
       &nbsp;·&nbsp;
@@ -632,7 +667,7 @@ const CMDS = {
     blank();
     tl('  ┌── commands ──────────────────────────────┐','dv');
     tl('  │','dv');
-    [['whoami','identity & summary'],['skills','full tech stack'],['experience',YRS+' years of work'],['domains','industry focus areas'],['ai','Vasudeva AI project'],['certs','certifications'],['education','degree'],['contact','get in touch'],['hire','why hire darshan?'],['download','export resume as PDF'],['theme','toggle dark / light'],['neofetch','system info card'],['clear','clear screen']].forEach(([c,d])=>{
+    [['whoami','identity & summary'],['skills','full tech stack'],['experience',YRS+' years of work'],['domains','industry focus areas'],['ai','Vasudeva AI project'],['certs','certifications'],['awards','competitions & wins'],['education','degree'],['contact','get in touch'],['hire','why hire darshan?'],['download','export resume as PDF'],['theme','toggle dark / light'],['neofetch','system info card'],['clear','clear screen']].forEach(([c,d])=>{
       const r=document.createElement('p'); r.className='tl';
       r.innerHTML=`  │  <span style="color:var(--amber2);display:inline-block;min-width:110px">${c}</span><span style="color:var(--textsub);">${d}</span>`; output.appendChild(r);
     });
@@ -653,6 +688,7 @@ const CMDS = {
     tl('  Shipped BLE medical devices, VoIP telecom, and field sales SaaS.','sub');
     tl('  Security-first: OWASP, secret scanning, TLS across 10+ repos.','sub');
     tl('  Pivoting into AI/ML — fine-tuned 9B LLM, built RAG pipelines.','sub');
+    tl('  <span style="color:var(--amber3)">🥈 1st Runner Up at the AWS AI League — AWS Summit 2026.</span>','ac');
     blank();
     tl('  → profile on the right has the complete picture.','cy');
     blank();
@@ -734,6 +770,25 @@ const CMDS = {
     tl('     Machine Learning School  <span style="color:var(--amber)">·  Oct 2025</span>','sub');
     blank();
   },
+  awards(){
+    blank();
+    tl('  ── achievements ────────────────────────','hd'); blank();
+    tl('  <span style="color:var(--amber3);font-weight:700">🥈 1st Runner Up — AWS AI League</span>');
+    tl('  <span style="color:var(--cyan)">AWS Summit Bengaluru 2026</span>  <span style="color:var(--amber)">Apr 2026</span>');
+    blank();
+    tl('  Built a fully autonomous AI agent using Amazon Bedrock','sub');
+    tl('  AgentCore — dungeon mazes, real-time challenges, timed rounds.','sub');
+    tl('  Qualified Top 3 finalists. Championship belt + $1K AWS credits.','sub');
+    blank();
+    trow('  agent  ','Bedrock AgentCore · Adaptive pathfinding Lambda');
+    trow('  tools  ','Web scraper · Code executor · Lambda functions');
+    trow('  guard  ','Bedrock Guardrails · Conversational trap handling');
+    trow('  memory ','AgentCore Memory · Encrypted code recall');
+    trow('  finals ','Real-time situational prompting · No code changes');
+    blank();
+    tl('  → <a href="https://linkedin.com/in/i-darshan" target="_blank" style="color:var(--cyan);text-decoration:none;">Full write-up on LinkedIn ↗</a>','cy');
+    blank();
+  },
   education(){
     blank();
     tl('  ── education ───────────────────────────','hd'); blank();
@@ -779,6 +834,7 @@ const CMDS = {
     trow('  <span style="color:var(--amber2)">stack</span>    ','.NET · Xamarin · MAUI · Android');
     trow('  <span style="color:var(--amber2)">ai</span>       ','LoRA · RAG · Ollama · GGUF');
     trow('  <span style="color:var(--amber2)">domains</span>  ','Telecom · Healthcare · SaaS');
+    trow('  <span style="color:var(--amber2)">award</span>    ','🥈 1st Runner Up · AWS AI League 2026');
     blank();
     tl('  <span style="color:var(--amber)">██</span><span style="color:var(--amber2)">██</span><span style="color:var(--amber3)">██</span><span style="color:var(--cyan)">██</span><span style="color:var(--green)">██</span><span style="color:var(--red)">██</span><span style="color:var(--dim)">██</span><span style="color:var(--text)">██</span>');
     blank();
@@ -801,6 +857,8 @@ const CMDS = {
     tl('  <span style="color:var(--amber2)">07.</span>  <span style="color:var(--amber3)">4 domains in '+YRS_NUM+' years</span> — telecom, healthcare, SaaS, transport','sub');
     blank();
     tl('  <span style="color:var(--amber2)">08.</span>  <span style="color:var(--amber3)">Security-first mindset</span> — OWASP, secret scanning, TLS across 10+ repos','sub');
+    blank();
+    tl('  <span style="color:var(--amber2)">09.</span>  <span style="color:var(--amber3)">🥈 1st Runner Up — AWS AI League 2026</span> — competes and wins against top builders','sub');
     blank();
     tl('  <span style="color:var(--dim)">────────────────────────────────────────────</span>','dv');
     tl('  <span style="color:var(--cyan)">→</span>  Ready? Type <span style="color:var(--amber)">sudo hire me</span> or <span style="color:var(--amber)">contact</span>','cy');
@@ -1079,7 +1137,8 @@ function goSection(id){
   {t:'Initializing AI modules........ <span style="color:var(--green)">OK</span>',c:'sub',d:540},
   {t:'',c:'blank',d:680},
   {t:'  Type <span style="color:var(--amber2)">help</span> to explore.  Profile visible on the right →',c:'cy',d:720},
-  {t:'',c:'blank',d:820},
+  {t:'  <span style="color:var(--amber3)">🥈</span> <span style="color:var(--amber)">NEW:</span> 1st Runner Up — AWS AI League 2026.  Type <span style="color:var(--amber2)">awards</span>',c:'ac',d:820},
+  {t:'',c:'blank',d:920},
 ].forEach(({t,c,d})=>setTimeout(()=>{tl(t,c);scroll();},d));
 setTimeout(typeName,200);
 setTimeout(()=>inp.focus(),950);
@@ -1162,7 +1221,7 @@ setTimeout(checkVisible,100);
             <div style="flex: 1.35; padding-left: 20px; padding-bottom: 10px;">
                 <h3 style="color: var(--amber2); font-size: 10px; margin-bottom: 3px; font-weight: 800;">SUMMARY</h3>
                 <p style="color: var(--text); font-size: 9.5px; line-height: 1.35; margin: 0; text-align: justify;">
-                    Technical Architect with <span id="pdf-summary-years">14</span> years of experience leading teams of up to 10 engineers and delivering cross-platform mobile, .NET backend, and telecom systems serving thousands of users. Architected SOMOS telecom compliance, AWS voicemail pipelines, and BLE medical device apps across healthcare, VoIP, and field sales domains. Security-first practitioner — OWASP, secret scanning, TLS remediation across 10+ repos. Currently pivoting into AI/ML with hands-on LLM fine-tuning and RAG pipelines.
+                    Technical Architect with <span id="pdf-summary-years">14</span> years of experience leading teams of up to 10 engineers and delivering cross-platform mobile, .NET backend, and telecom systems serving thousands of users. Architected SOMOS telecom compliance, AWS voicemail pipelines, and BLE medical device apps across healthcare, VoIP, and field sales domains. Security-first practitioner — OWASP, secret scanning, TLS remediation across 10+ repos. Currently pivoting into AI/ML — fine-tuned a 9B LLM, built RAG pipelines, and placed 1st Runner Up at the AWS AI League (AWS Summit Bengaluru 2026).
                 </p>
             </div>
         </div>
@@ -1188,6 +1247,25 @@ setTimeout(checkVisible,100);
             </div>
 
             <div style="flex: 1.35; padding-left: 20px; padding-top: 10px;">
+                <h3 style="color: var(--amber); font-size: 10px; margin-bottom: 8px; text-transform: uppercase; font-weight: 800;">Achievement</h3>
+                <div style="margin-bottom:12px;padding-bottom:10px;border-bottom:1px dashed var(--dimmer);">
+                    <div style="font-size:8.5px;font-weight:700;color:var(--amber3);">🥈 1st Runner Up — AWS AI League</div>
+                    <div style="font-size:8px;color:var(--cyan);margin:2px 0 1px;">AWS Summit Bengaluru 2026 · Apr 2026</div>
+                    <div style="font-size:8px;color:var(--dim);">Championship Belt + $1,000 AWS Credits</div>
+                    <div style="font-size:8.5px;color:var(--textsub);line-height:1.3;margin-top:4px;">
+                        <div style="position:relative;padding-left:10px;margin-bottom:1px;"><span style="position:absolute;left:0;color:var(--dim);">→</span>Built autonomous AI agent using Amazon Bedrock AgentCore — adaptive pathfinding Lambda, dungeon maze navigation</div>
+                        <div style="position:relative;padding-left:10px;margin-bottom:1px;"><span style="position:absolute;left:0;color:var(--dim);">→</span>Web scraper &amp; code executor tools deployed as Lambda functions for real-time problem solving</div>
+                        <div style="position:relative;padding-left:10px;margin-bottom:1px;"><span style="position:absolute;left:0;color:var(--dim);">→</span>Bedrock Guardrails for conversational traps, AgentCore Memory for encrypted code recall</div>
+                        <div style="position:relative;padding-left:10px;"><span style="position:absolute;left:0;color:var(--dim);">→</span>Top 3 finalist — final rounds required pure real-time situational prompting, no code changes</div>
+                    </div>
+                    <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:5px;">
+                        <span style="font-size:7px;padding:1px 5px;border:1px solid var(--dimmer);color:var(--amber);letter-spacing:0.03em;">Amazon Bedrock</span>
+                        <span style="font-size:7px;padding:1px 5px;border:1px solid var(--dimmer);color:var(--amber);letter-spacing:0.03em;">AgentCore</span>
+                        <span style="font-size:7px;padding:1px 5px;border:1px solid var(--dimmer);color:var(--amber);letter-spacing:0.03em;">AWS Lambda</span>
+                        <span style="font-size:7px;padding:1px 5px;border:1px solid var(--dimmer);color:var(--amber);letter-spacing:0.03em;">Guardrails</span>
+                        <span style="font-size:7px;padding:1px 5px;border:1px solid var(--dimmer);color:var(--amber);letter-spacing:0.03em;">AI Agents</span>
+                    </div>
+                </div>
                 <h3 style="color: var(--amber); font-size: 10px; margin-bottom: 8px; text-transform: uppercase; font-weight: 800;">Professional Experience</h3>
                 <div id="pdf-exp-content" style="font-size: 8.5px; line-height: 1.25;"></div>
             </div>
