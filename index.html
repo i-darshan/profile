@@ -217,6 +217,18 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
 .sk-bar.g .filled{color:var(--amber2);}
 .sk-bar.b .filled{color:var(--cyan);}
 .sk-pct{font-size:10px;color:var(--dim);min-width:28px;text-align:right;}
+.eval-metrics{margin:10px 0;}
+.eval-metrics .sk-row{display:grid;grid-template-columns:minmax(0,170px) minmax(60px,1fr);gap:7px;margin:12px 0;}
+.eval-metrics .sk-name{min-width:0;font-size:10px;grid-column:1;grid-row:1;}
+.eval-scale{grid-column:2;grid-row:1;padding:16px 20px 0;color:var(--amber);}
+.eval-scale.b{color:var(--cyan);}
+.eval-scale.eval-safe{color:var(--green);}
+.eval-scale.eval-below{color:var(--red);}
+.eval-track{display:block;position:relative;height:12px;border-bottom:1px solid var(--dimmer);background:repeating-linear-gradient(to right,var(--dimmer) 0,var(--dimmer) 1px,transparent 1px,transparent 10%);background-size:100% 5px;background-repeat:no-repeat;background-position:bottom;}
+.eval-pointer{position:absolute;left:0;top:0;width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid currentColor;transform:translateX(-50%);transition:left 0.7s ease;}
+.eval-value{position:absolute;bottom:10px;left:0;transform:translateX(-50%);font-size:10px;line-height:1;white-space:nowrap;}
+.eval-ticks{display:flex;justify-content:space-between;font-size:9px;color:var(--dim);margin-top:2px;}
+@media(prefers-reduced-motion:reduce){.eval-pointer{transition:none;}}
 
 /* certs */
 .cert-row{display:flex;justify-content:space-between;align-items:flex-start;padding:6px 0;border-bottom:1px solid var(--dimmost);}
@@ -349,7 +361,7 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
             <div class="p-stat" style="cursor:default"><div class="p-stat-n" id="stat-years">14+</div><div class="p-stat-l">years</div></div>
             <div class="p-stat p-stat-link" onclick="goSection('sec-domains')" title="View Domains"><div class="p-stat-n">4</div><div class="p-stat-l">domains ↗</div></div>
             <div class="p-stat p-stat-link" onclick="goSection('sec-experience')" title="View Experience"><div class="p-stat-n">4</div><div class="p-stat-l">companies ↗</div></div>
-            <div class="p-stat p-stat-link" onclick="goSection('sec-projects')" title="View AI Project"><div class="p-stat-n">1</div><div class="p-stat-l">ai project ↗</div></div>
+            <div class="p-stat p-stat-link" onclick="goSection('sec-projects')" title="View AI Projects"><div class="p-stat-n">2</div><div class="p-stat-l">ai projects ↗</div></div>
           </div>
         </div>
       </div>
@@ -557,7 +569,41 @@ body{font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);}
           <span class="p-sec-toggle">[-]</span>
         </div>
         <div class="p-sec-body">
-          <div class="proj-name">Gita Wisdom — Vasudeva</div>
+          <div class="proj-name">Intelligent Claims Processing &amp; Case Management Agent</div>
+          <div class="proj-sub">AI · Claims &amp; Case Management</div>
+          <p class="proj-desc">Designed a serverless multi-agent workflow for claims intake, document extraction and classification, evidence summaries, case routing, human approvals, and SLA escalation. Step Functions coordinates specialist agents on Bedrock AgentCore; confidence checks route uncertain cases for human review. Built to reduce manual handoffs and improve case visibility with durable workflows and auditable actions.</p>
+          <div class="sk-group-label" style="margin-top:10px;">Evaluation · Scale 0–1</div>
+          <div class="eval-metrics">
+            <div class="sk-row" title="29 of 30 scenarios scored successfully">
+              <span class="sk-name">Goal success</span>
+              <span class="eval-scale" data-score="0.9666666666666667" role="img" aria-label="Goal success: 0.967 out of 1"></span>
+            </div>
+            <div class="sk-row" title="Mean claims-field accuracy score across 30 synthetic scenarios">
+              <span class="sk-name">Claims-field accuracy</span>
+              <span class="eval-scale b" data-score="0.9851851851851853" role="img" aria-label="Claims-field accuracy: 0.985 out of 1"></span>
+            </div>
+            <div class="sk-row" title="Below target: 0.892 versus 0.900">
+              <span class="sk-name">Tool-selection accuracy</span>
+              <span class="eval-scale eval-below" data-score="0.8924731182795699" role="img" aria-label="Tool-selection accuracy: 0.892 out of 1; below the 0.900 target"></span>
+            </div>
+            <div class="sk-row">
+              <span class="sk-name">Trajectory match</span>
+              <span class="eval-scale eval-safe" data-score="1" role="img" aria-label="Trajectory match: 1.000 out of 1"></span>
+            </div>
+            <div class="sk-row" title="Approval-control evaluator passed in 30 of 30 scenarios">
+              <span class="sk-name">Approval-control checks</span>
+              <span class="eval-scale eval-safe" data-score="1" role="img" aria-label="Approval-control checks: 1.000 out of 1; passed in 30 of 30 scenarios"></span>
+            </div>
+          </div>
+          <div class="proj-stack">
+            <span class="proj-tag">Bedrock AgentCore + Strands</span>
+            <span class="proj-tag">Amazon Bedrock + Guardrails</span>
+            <span class="proj-tag">Amazon Textract</span>
+            <span class="proj-tag">Step Functions + Lambda</span>
+            <span class="proj-tag">DynamoDB + S3</span>
+            <span class="proj-tag">CloudWatch + CloudTrail</span>
+          </div>
+          <div class="proj-name" style="margin-top:14px;">Gita Wisdom — Vasudeva</div>
           <div class="proj-sub">AI · Personal Project</div>
           <p class="proj-desc">AI-powered diary companion app where users write about life struggles and receive responses in the voice of Krishna, grounded in Bhagavad Gita philosophy. Fine-tuned Gemma 2 9B using LoRA (GGUF Q4_K_M for local Ollama inference). FastAPI backend with RAG pipeline over 701 indexed Gita verses via ChromaDB. Multilingual support: English, Hindi, and Hinglish.</p>
           <div class="proj-stack">
@@ -620,8 +666,19 @@ function ptoggle(head){
   if(!hidden) setTimeout(()=>{ renderBars(body, true); },60);
 }
 function renderBars(container, animate){
+  container.querySelectorAll('.eval-scale[data-score]').forEach(scale=>{
+    scale.innerHTML='<span class="eval-track" aria-hidden="true"><span class="eval-pointer"><span class="eval-value"></span></span></span><span class="eval-ticks" aria-hidden="true"><span>0</span><span>0.5</span><span>1</span></span>';
+    const pointer=scale.querySelector('.eval-pointer');
+    scale.querySelector('.eval-value').textContent=Number(scale.dataset.score).toFixed(3);
+    const position=`${Number(scale.dataset.score)*100}%`;
+    if(animate){
+      setTimeout(()=>{pointer.style.left=position;},60);
+    } else {
+      pointer.style.left=position;
+    }
+  });
   container.querySelectorAll('.sk-bar[data-w]').forEach((bar,i)=>{
-    const pct=parseInt(bar.getAttribute('data-w'));
+    const pct=parseFloat(bar.getAttribute('data-w'));
     const total=12, filled=Math.round(pct/100*total), empty=total-filled;
     if(animate){
       bar.innerHTML='<span class="filled"></span><span class="empty">'+'░'.repeat(total)+'</span>';
@@ -659,11 +716,11 @@ function scroll(){ output.scrollTop=output.scrollHeight; }
 function echoCmd(cmd){ const p=document.createElement('p'); p.className='tl echo'; p.innerHTML=`<span class="ps">darshan</span><span style="color:var(--dimmer)">@</span><span class="ph">portfolio</span> <span style="color:var(--amber)">$</span> ${cmd}`; output.appendChild(p); }
 function trow(k,v){ const d=document.createElement('div'); d.style.cssText='display:flex;gap:0;margin:2px 0;'; d.innerHTML=`<span style="color:var(--dim);min-width:110px;flex-shrink:0;">${k}</span><span style="color:var(--text);">${v}</span>`; output.appendChild(d); }
 let _tsbarQueue=[];
-function sbar(name,pct,col){
+function sbar(name,pct,col,label=`${pct}%`){
   const total=12, filled=Math.round(pct/100*total), empty=total-filled;
   const colVar=col||'--amber';
   const r=document.createElement('p'); r.className='tl';
-  r.innerHTML=`  <span style="color:var(--text);display:inline-block;min-width:160px;font-size:11px;">${name}</span><span class="tsb" style="letter-spacing:1px;font-size:10px;"><span style="color:var(--dimmer)">${'░'.repeat(total)}</span></span> <span style="font-size:10px;color:var(--dim);">${pct}%</span>`;
+  r.innerHTML=`  <span style="color:var(--text);display:inline-block;min-width:160px;font-size:11px;">${name}</span><span class="tsb" style="letter-spacing:1px;font-size:10px;"><span style="color:var(--dimmer)">${'░'.repeat(total)}</span></span> <span style="font-size:10px;color:var(--dim);">${label}</span>`;
   output.appendChild(r);
   _tsbarQueue.push({el:r.querySelector('.tsb'),filled,empty,col:colVar});
 }
@@ -681,7 +738,7 @@ const CMDS = {
     blank();
     tl('  ┌── commands ──────────────────────────────┐','dv');
     tl('  │','dv');
-    [['whoami','identity & summary'],['skills','full tech stack'],['experience',YRS+' years of work'],['domains','industry focus areas'],['ai','Vasudeva AI project'],['certs','certifications'],['awards','competitions & wins'],['education','degree'],['contact','get in touch'],['hire','why hire darshan?'],['download','export resume as PDF'],['theme','toggle dark / light'],['neofetch','system info card'],['clear','clear screen']].forEach(([c,d])=>{
+    [['whoami','identity & summary'],['skills','full tech stack'],['experience',YRS+' years of work'],['domains','industry focus areas'],['ai','AI projects'],['certs','certifications'],['awards','competitions & wins'],['education','degree'],['contact','get in touch'],['hire','why hire darshan?'],['download','export resume as PDF'],['theme','toggle dark / light'],['neofetch','system info card'],['clear','clear screen']].forEach(([c,d])=>{
       const r=document.createElement('p'); r.className='tl';
       r.innerHTML=`  │  <span style="color:var(--amber2);display:inline-block;min-width:110px">${c}</span><span style="color:var(--textsub);">${d}</span>`; output.appendChild(r);
     });
@@ -764,6 +821,14 @@ const CMDS = {
     });
   },
   ai(){
+    blank();
+    tl('  ── Claims Processing & Case Management ──','hd'); blank();
+    tl('  Serverless multi-agent workflow for intake, documents,','sub');
+    tl('  evidence summaries, routing, human approvals and SLAs.','sub');
+    tl('  ── evaluation · scale 0–1 ──','hd');
+    const metrics=document.querySelector('#sec-projects .eval-metrics').cloneNode(true);
+    output.appendChild(metrics);
+    renderBars(metrics,true);
     blank();
     tl('  ── Gita Wisdom (Vasudeva) ──────────────','hd'); blank();
     tl('  AI diary companion — users write about struggles,','sub');
